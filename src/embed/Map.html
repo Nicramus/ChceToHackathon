@@ -10,13 +10,35 @@
     <script type="text/javascript">
         function initialize() {
             var mapOptions = {
-                center: { lat: -34.397, lng: 150.644},
-                zoom: 8
+                center: { lat: 52.4005285, lng: 16.9016658},
+                zoom:11,
+                data:"!3m1!4b1!4m2!3m1!1s0x470444d2ece10ab7:0xa4ea31980334bfd1"
             };
             var map = new google.maps.Map(document.getElementById('map-canvas'),
                     mapOptions);
         }
         google.maps.event.addDomListener(window, 'load', initialize);
+        google.load("visualization", "1", {packages:["geochart"]});
+        google.setOnLoadCallback(drawRegionsMap);
+
+        function drawRegionsMap() {
+
+            var data = google.visualization.arrayToDataTable([
+                ['Country', 'Popularity'],
+                ['Germany', 200],
+                ['United States', 300],
+                ['Brazil', 400],
+                ['Canada', 500],
+                ['France', 600],
+                ['RU', 700]
+            ]);
+
+            var options = {};
+
+            var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+
+            chart.draw(data, options);
+
     </script>
 </head>
 <body>
