@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ViewNavigatorApplication contentBackgroundAlpha="0" addedToStage="_added()" xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" firstView="pl.needapp.chcetu.view.HomeView" creationComplete="_cc()">
+    <s:navigationContent>
+        <s:Button label="Home" click="navigator.popToFirstView()"/>
+        <s:Button label="Mapa" click="navigator.pushView(MapaView)"/>
+        <s:Button label="Inwestycja" click="navigator.pushView(InwestycjaView)"/>
+        <s:Button label="Ranking" click="navigator.pushView(RankingView)"/>
+        <s:Button label="Zglos" click="navigator.pushView(ZglosView)"/>
+    </s:navigationContent>
+
+    <fx:Script><![CDATA[
+        import mx.core.FlexGlobals;
+        import mx.core.UIComponent;
+
+        import pl.needapp.chcetu.view.InwestycjaView;
+        import pl.needapp.chcetu.view.MapaView;
+        import pl.needapp.chcetu.view.RankingView;
+        import pl.needapp.chcetu.view.ZglosView;
+
+        public static var view:StageWebView;
+
+        private function _cc():void {
+
+
+        }
+
+        private function _added():void {
+
+
+        }
+
+        public static function showHTML(url:String, s:String = null):void {
+            //TODO Do komunikacji https://code.google.com/p/stagewebviewbridge/
+
+            view = new StageWebView();
+            view.stage = (FlexGlobals.topLevelApplication as UIComponent).stage;
+            view.viewPort = new Rectangle(0, 50, view.stage.stageWidth, view.stage.stageHeight - 50);
+            if (url) {
+                view.loadURL(url);
+            }
+            else {
+                view.loadString(s);
+            }
+        }
+
+        public static function hideHTML():void {
+            view.stage = null;
+            view.viewPort = null;
+            view.dispose();
+            view = null;
+        }
+        ]]></fx:Script>
+</s:ViewNavigatorApplication>

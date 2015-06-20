@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" creationComplete="_cc()" show="_show()" hide="_hide()" removedFromStage="_hide()">
+
+    <fx:Script><![CDATA[
+        [Embed(source="../../../../embed/Map.html", mimeType="application/octet-stream")]
+        public static const CONFIG_HTML:Class;
+
+        private function _cc():void {
+
+        }
+
+        private function _show():void {
+
+            ChceTu.showHTML(null, new CONFIG_HTML);
+        }
+
+        private function _hide():void {
+            ChceTu.hideHTML();
+        }
+        ]]></fx:Script>
+</s:View>
