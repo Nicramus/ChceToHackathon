@@ -1,12 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:ViewNavigatorApplication contentBackgroundAlpha="0" addedToStage="_added()" xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" firstView="pl.needapp.chcetu.view.HomeView" creationComplete="_cc()">
+<s:ViewNavigatorApplication contentBackgroundAlpha="0" addedToStage="_added()" xmlns:fx="http://ns.adobe.com/mxml/2009"
+                            xmlns:s="library://ns.adobe.com/flex/spark" firstView="pl.needapp.chcetu.view.HomeView"
+                            creationComplete="_cc()" xmlns:ui="pl.needapp.chcetu.view.ui.*"
+                            xmlns:mx="library://ns.adobe.com/flex/mx">
+    <s:states>
+        <s:State name="normal" />
+        <s:State name="menu" />
+    </s:states>
+
     <s:navigationContent>
-        <s:Button label="Home" click="navigator.popToFirstView()"/>
-        <s:Button label="Mapa" click="navigator.pushView(MapaView)"/>
-        <s:Button label="Inwestycja" click="navigator.pushView(InwestycjaView)"/>
-        <s:Button label="Ranking" click="navigator.pushView(RankingView)"/>
-        <s:Button label="Zglos" click="navigator.pushView(ZglosView)"/>
+       <s:ToggleButton label="MENU" click="{setCurrentState(currentState == 'normal' ? 'menu' : 'normal')}"/>
+        <mx:Spacer width="20" />
+        <s:Label text="A tu wypasione logo" color="white" />
+        <ui:LeftMenu width="300" height="700" includeInLayout="false" y="50" includeIn="menu"/>
     </s:navigationContent>
+
+    <s:actionContent>
+
+    </s:actionContent>
+
 
     <fx:Script><![CDATA[
         import mx.core.FlexGlobals;
@@ -17,10 +29,15 @@
         import pl.needapp.chcetu.view.RankingView;
         import pl.needapp.chcetu.view.ZglosView;
 
+        import spark.components.ViewNavigator;
+
+        import spark.components.supportClasses.ViewNavigatorAction;
+
         public static var view:StageWebView;
+        public static var NAVIGATOR : ViewNavigator;
 
         private function _cc():void {
-
+             NAVIGATOR = navigator;
 
         }
 

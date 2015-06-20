@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark">
+    <!-- To change this template use File | Settings | File Templates. -->
+    <s:Rect width="100%" height="100%">
+        <s:fill>
+            <s:SolidColor color="#999999" />
+        </s:fill>
+    </s:Rect>
+    <s:VGroup width="100%">
+        <s:Button label="Home" click="ChceTu.NAVIGATOR.popToFirstView()"/>
+        <s:Button label="Mapa" click="ChceTu.NAVIGATOR.pushView(MapaView)"/>
+        <s:Button label="Inwestycja" click="ChceTu.NAVIGATOR.pushView(InwestycjaView)"/>
+        <s:Button label="Ranking" click="ChceTu.NAVIGATOR.pushView(RankingView)"/>
+        <s:Button label="Zglos" click="ChceTu.NAVIGATOR.pushView(ZglosView)"/>
+    </s:VGroup>
+    <fx:Script><![CDATA[
+        import pl.needapp.chcetu.view.InwestycjaView;
+        import pl.needapp.chcetu.view.MapaView;
+        import pl.needapp.chcetu.view.RankingView;
+        import pl.needapp.chcetu.view.ZglosView;
+        ]]></fx:Script>
+</s:Group>
