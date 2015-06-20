@@ -4,18 +4,28 @@
         <s:VerticalLayout/>
     </s:layout>
 
-    <s:Label text="Twoja lokalizacja: xxxxx xxxxx"/>
+    <s:Label text="Twoja lokalizacja: ul. Strzelecka, Poznań"/>
+    <s:HGroup>
+        <s:Button click="button1_clickHandler(event)" label="Foto"/>
+        <s:Button click="button1_clickHandler(event)" label="Z pliku"/>
+    </s:HGroup>
 
-    <s:Button click="button1_clickHandler(event)" label="TAKE A PICTURE"/>
+    <s:TextInput id="titleInput" prompt="Podaj tytuł" width="100%"/>
 
-    <!--<s:TextArea id="myTextField" height="50"/>-->
+    <s:TextArea id="description" prompt="Podaj opis" width="100%" heightInLines="3"/>
+
     <s:SpriteVisualElement id="sprite1" width="200" height="150"/>
-    <!--<s:Image id="theImage" height="100%" width="100%" x="10"/>-->
+
+    <s:Spacer height="100%" />
+
+    <s:Button id="saveBtn" click="save(event)" width="100%" label="ZAPISZ"/>
 
     <fx:Script><![CDATA[
+
+
+        /* OBSŁUGA KAMERKI */
         private var deviceCameraApp:CameraUI = new CameraUI();
         private var imageLoader:Loader;
-
 
         protected function button1_clickHandler(event:MouseEvent):void {
             this.stage.align = StageAlign.TOP_LEFT;
@@ -74,6 +84,25 @@
         private function cameraError(error:ErrorEvent):void {
             trace("Error:" + error.text);
             NativeApplication.nativeApplication.exit();
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        private function save(event:MouseEvent):void {
+
         }
         ]]></fx:Script>
 </s:View>
