@@ -4,11 +4,11 @@
     <configurations>
       <configuration name="neddApp" target-platform="Mobile" main-class="ChceTu" output-file="NeddApp.swf" output-folder="$MODULE_DIR$/out/production/neddApp">
         <dependencies target-player="16.0">
-          <sdk name="flex_14" />
+          <sdk name="4.14.1" />
         </dependencies>
         <compiler-options />
         <packaging-air-desktop />
-        <packaging-android enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/NeddApp-app.xml" package-file-name="NeddApp" />
+        <packaging-android enabled="true" use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/ChceTu-app.xml" package-file-name="NeddApp" />
         <packaging-ios package-file-name="NeddApp" />
       </configuration>
     </configurations>
@@ -19,7 +19,7 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
     </content>
-    <orderEntry type="jdk" jdkName="flex_14" jdkType="Flex SDK Type (new)" />
+    <orderEntry type="jdk" jdkName="4.14.1" jdkType="Flex SDK Type (new)" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>

@@ -1,15 +1,79 @@
 <?xml version="1.0"?>
-<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" creationComplete="_cc()">
-    <s:Button label="Photo" />
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark">
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
 
+    <s:Label text="Twoja lokalizacja: xxxxx xxxxx"/>
+
+    <s:Button click="button1_clickHandler(event)" label="TAKE A PICTURE"/>
+
+    <!--<s:TextArea id="myTextField" height="50"/>-->
+    <s:SpriteVisualElement id="sprite1" width="200" height="150"/>
+    <!--<s:Image id="theImage" height="100%" width="100%" x="10"/>-->
 
     <fx:Script><![CDATA[
+        private var deviceCameraApp:CameraUI = new CameraUI();
+        private var imageLoader:Loader;
 
-        private function _cc():void {
 
+        protected function button1_clickHandler(event:MouseEvent):void {
+            this.stage.align = StageAlign.TOP_LEFT;
+            this.stage.scaleMode = StageScaleMode.NO_SCALE;
+
+            if (CameraUI.isSupported) {
+                trace("Initializing camera...");
+
+                deviceCameraApp.addEventListener(MediaEvent.COMPLETE, imageCaptured);
+                deviceCameraApp.addEventListener(Event.CANCEL, captureCanceled);
+                deviceCameraApp.addEventListener(ErrorEvent.ERROR, cameraError);
+                deviceCameraApp.launch(MediaType.IMAGE);
+            }
+            else {
+                trace("Camera interface is not supported.");
+            }
         }
 
+        private function imageCaptured(event:MediaEvent):void {
+            trace("Media captured...");
 
+            var imagePromise:MediaPromise = event.data;
 
+            if (imagePromise.isAsync) {
+                trace("Asynchronous media promise.");
+                imageLoader = new Loader();
+                imageLoader.contentLoaderInfo.addEventListener(Event.COMPLETE, asyncImageLoaded);
+                imageLoader.addEventListener(IOErrorEvent.IO_ERROR, cameraError);
+
+                imageLoader.loadFilePromise(imagePromise);
+            }
+            else {
+                trace("Synchronous media promise.");
+                imageLoader.loadFilePromise(imagePromise);
+                showMedia(imageLoader);
+            }
+        }
+
+        private function captureCanceled(event:Event):void {
+            trace("Media capture canceled.");
+            NativeApplication.nativeApplication.exit();
+        }
+
+        private function asyncImageLoaded(event:Event):void {
+            trace("Media loaded in memory.");
+            showMedia(imageLoader);
+        }
+
+        private function showMedia(loader:Loader):void {
+            var scale:Number = this.width / loader.width;
+            loader.width *=scale;
+            loader.height *=scale;
+            sprite1.addChild(loader);
+        }
+
+        private function cameraError(error:ErrorEvent):void {
+            trace("Error:" + error.text);
+            NativeApplication.nativeApplication.exit();
+        }
         ]]></fx:Script>
 </s:View>
