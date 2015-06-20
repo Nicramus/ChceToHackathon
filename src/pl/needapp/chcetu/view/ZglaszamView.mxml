@@ -1,15 +1,122 @@
 <?xml version="1.0"?>
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" creationComplete="_cc()">
-    <s:Button label="Photo" />
+    <s:layout>
+        <s:VerticalLayout />
+    </s:layout>
 
+    <s:Button click="button1_clickHandler(event)" label="TAKE A PICTURE" />
+    <s:Button click="transformImage()" label="APPLY FILTER" />
+    <s:TextArea id="myTextField"  height="50"/>
+    <s:SpriteVisualElement id="sprite1" width="200" height="150"/>
+    <!--<s:Image id="theImage" height="100%" width="100%" x="10"/>-->
 
     <fx:Script><![CDATA[
 
-        private function _cc():void {
 
+
+        import flash.filters.ColorMatrixFilter;
+        private var myCam:CameraUI;
+
+        private var cam:Camera;
+
+        protected function button1_clickHandler(event:MouseEvent):void
+        {
+//            theImage.filters = [];
+            /*if (CameraUI.isSupported){
+                myCam.launch(MediaType.IMAGE);
+            } else {
+                trace("CAMERA_UI NOT AVAILABLE");
+            }*/
+
+            if (Camera.isSupported)
+            {
+                cam = Camera.getCamera();
+
+                if (!cam) {
+                    myTextField.text = "No camera is installed.";
+
+                } else if (cam.muted) {
+                    myTextField.text = "To enable the use of the camera,\n"
+                            + "please click on this text field.\n"
+                            + "When the Flash Player Settings dialog appears,\n"
+                            + "make sure to select the Allow radio button\n"
+                            + "to grant access to your camera.";
+
+                    myTextField.addEventListener(MouseEvent.CLICK, clickHandler);
+
+                }else {
+                    myTextField.text = "Connecting";
+                    connectCamera();
+                }
+
+                //addChild(myTextField);
+
+                //t.addEventListener(TimerEvent.TIMER, timerHandler);
+            }else {
+                myTextField.text = "The Camera class is not supported on this device.";
+            }
         }
 
+        private function clickHandler(e:MouseEvent):void {
+            Security.showSettings(SecurityPanel.PRIVACY);
 
+            cam.addEventListener(StatusEvent.STATUS, statusHandler);
+
+            myTextField.removeEventListener(MouseEvent.CLICK, clickHandler);
+        }
+
+        private function statusHandler(event:StatusEvent):void {
+
+            if (event.code == "Camera.Unmuted") {
+                connectCamera();
+                cam.removeEventListener(StatusEvent.STATUS, statusHandler);
+            }
+        }
+
+        private function connectCamera():void {
+            var vid:Video = new Video(cam.width*4, cam.height*4);
+//            vid.x = 10;
+//            vid.y = 10;
+            vid.attachCamera(cam);
+            sprite1.addChild(vid);
+
+            //t.start();
+        }
+
+        private function timerHandler(event:TimerEvent):void {
+            myTextField.y = cam.height + 20;
+            myTextField.text = "";
+            myTextField.appendText("bandwidth: " + cam.bandwidth + "\n");
+            myTextField.appendText("currentFPS: " + Math.round(cam.currentFPS) + "\n");
+            myTextField.appendText("fps: " + cam.fps + "\n");
+            myTextField.appendText("keyFrameInterval: " + cam.keyFrameInterval + "\n");
+        }
+
+        protected function _cc():void
+        {
+            if (CameraUI.isSupported){
+                myCam = new CameraUI();
+                myCam.addEventListener(MediaEvent.COMPLETE, onComplete);
+            } else {
+                trace("CAMERA NOT AVAILABLE");
+            }
+        }
+
+        private function onComplete(evt:MediaEvent):void{
+//            theImage.source = evt.data.file.url;
+        }
+
+        private function transformImage():void
+        {
+            var matrixArray:Array =[
+                .33,.33,.33,0,0,
+                .33,.33,.33,0,0,
+                .33,.33,.33,0,0,
+                0,0,0,1,0];
+            var blackWhiteFilter:ColorMatrixFilter = new ColorMatrixFilter(matrixArray);
+
+            sprite1.filters = [blackWhiteFilter];
+        }
 
         ]]></fx:Script>
 </s:View>
