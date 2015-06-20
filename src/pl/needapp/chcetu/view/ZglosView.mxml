@@ -26,6 +26,8 @@
             "KTO WYPUŚCIŁ PIESKI? KTO! KTO!",
             "Piesek zostawił coś na trawniku",
             "Stop  cham."
+
+
         ];
 
         private function _cc():void {
