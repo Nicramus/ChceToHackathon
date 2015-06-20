@@ -63,13 +63,11 @@
                 b.count = o.c;
                 b.source = '/embed/images/' + o.s;
                 b.description = o.d;
+                b.navigator = navigator;
                 hgroup.addElement(b);
                 i++;
             }
         }
 
-        private function onItemSelect(event:MouseEvent):void {
-            navigator.pushView(ZglaszamView);
-        }
         ]]></fx:Script>
 </s:View>
