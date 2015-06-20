@@ -1,4 +1,10 @@
 <?xml version="1.0"?>
-<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark">
-    <s:Button label="a ja CHCEtu" click="navigator.pushView(ZglosView)" />
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
+        xmlns:mx="library://ns.adobe.com/flex/mx">
+    <s:layout>
+        <s:VerticalLayout gap="5" horizontalAlign="center" paddingBottom="50"/>
+    </s:layout>
+    <mx:Spacer height="100%" />
+    <s:Button label="CHCEtu coś zrobić" click="navigator.pushView(ZglosView)" width="60%"/>
+    <s:Button label="CHCEtu coś zakomunikować" click="navigator.pushView(ZglosView)" width="60%"/>
 </s:View>

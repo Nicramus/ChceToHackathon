@@ -1,17 +1,32 @@
 <?xml version="1.0"?>
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" creationComplete="_cc()">
-    <s:Label text="A ja chcę tu:" />
 
+    <s:Scroller width="100%" height="100%" id="list">
+
+        <s:VGroup width="100%" id="c" paddingLeft="10" paddingRight="10" paddingTop="10" paddingBottom="10">
+            <s:Label text="CHCEtu coś zrobić:" />
+            <s:VGroup width="100%" id="c1" paddingLeft="10" paddingRight="10" paddingTop="10" paddingBottom="10">
+            </s:VGroup>
+            <s:Label text="CHCEtu coś zakomunikować:" />
+            <s:VGroup width="100%" id="c2" paddingLeft="10" paddingRight="10" paddingTop="10" paddingBottom="10">
+            </s:VGroup>
+        </s:VGroup>
+    </s:Scroller>
 
     <fx:Script><![CDATA[
         import mx.collections.ArrayCollection;
+
+        import spark.components.Button;
 
         public static var CATS : Array = [
             "CHCEtu dróżkę rowerową",
             "CHCEtu załatajcie pliz dziury w drodze",
             "CHCEtu inwestować",
             "CHCEtu zbudować",
-            "CHCEtu cośkolwiek",
+            "CHCEtu cośkolwiek"
+        ];
+
+        public static var CATS2 : Array = [
             "Ciemność widzę, widzę ciemność - nie świecą się lampy",
             "Uwaga, niebezpieczeństwo - lepsze oznakowanie drogi, światła etc",
             "Zgłoszenie GOAP",
@@ -26,12 +41,22 @@
             "KTO WYPUŚCIŁ PIESKI? KTO! KTO!",
             "Piesek zostawił coś na trawniku",
             "Stop  cham."
-
-
         ];
 
         private function _cc():void {
+            for each (var s : String in CATS) {
+                var b : Button = new Button();
+                b.percentWidth = 100;
+                b.label = s;
+                c1.addElement(b);
+            }
 
+            for each (var s : String in CATS2) {
+                var b : Button = new Button();
+                b.percentWidth = 100;
+                b.label = s;
+                c2.addElement(b);
+            }
         }
         ]]></fx:Script>
 </s:View>
