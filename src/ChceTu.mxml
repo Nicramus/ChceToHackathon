@@ -4,14 +4,14 @@
                             creationComplete="_cc()" xmlns:ui="pl.needapp.chcetu.view.ui.*"
                             xmlns:mx="library://ns.adobe.com/flex/mx">
     <s:states>
-        <s:State name="normal" />
-        <s:State name="menu" />
+        <s:State name="normal"/>
+        <s:State name="menu"/>
     </s:states>
 
     <s:navigationContent>
-       <s:ToggleButton label="MENU" click="{setCurrentState(currentState == 'normal' ? 'menu' : 'normal')}"/>
-        <mx:Spacer width="20" />
-        <s:Label text="A tu wypasione logo" color="white" />
+        <s:ToggleButton label="MENU" click="{setCurrentState(currentState == 'normal' ? 'menu' : 'normal')}"/>
+        <mx:Spacer width="20"/>
+        <s:Label text="A tu wypasione logo" color="white"/>
         <ui:LeftMenu width="300" height="700" includeInLayout="false" y="50" includeIn="menu"/>
     </s:navigationContent>
 
@@ -21,29 +21,31 @@
 
 
     <fx:Script><![CDATA[
+        import caurina.transitions.properties.ColorShortcuts;
+
         import mx.core.FlexGlobals;
         import mx.core.UIComponent;
 
-        import pl.needapp.chcetu.view.InwestycjaView;
-        import pl.needapp.chcetu.view.MapaView;
-        import pl.needapp.chcetu.view.RankingView;
-        import pl.needapp.chcetu.view.ZglosView;
-
         import spark.components.ViewNavigator;
 
-        import spark.components.supportClasses.ViewNavigatorAction;
-
         public static var view:StageWebView;
-        public static var NAVIGATOR : ViewNavigator;
+        public static var NAVIGATOR:ViewNavigator;
+        public static var ROOT:ChceTu;
 
         private function _cc():void {
-             NAVIGATOR = navigator;
+            ColorShortcuts.init();
 
+            NAVIGATOR = navigator;
+            ROOT = this;
         }
 
         private function _added():void {
 
 
+        }
+
+        public function hideMenu():void {
+            setCurrentState("normal");
         }
 
         public static function showHTML(url:String, s:String = null):void {

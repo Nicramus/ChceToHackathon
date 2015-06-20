@@ -1,131 +1,79 @@
 <?xml version="1.0"?>
-<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" creationComplete="_cc()">
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark">
     <s:layout>
-        <s:VerticalLayout />
+        <s:VerticalLayout/>
     </s:layout>
 
-    <s:Label text="Twoja lokalizacja: xxxxx xxxxx" />
+    <s:Label text="Twoja lokalizacja: xxxxx xxxxx"/>
 
-    <s:Button click="button1_clickHandler(event)" label="TAKE A PICTURE" />
-    <s:Button click="transformImage()" label="APPLY FILTER" />
-    <s:TextArea id="myTextField"  height="50"/>
+    <s:Button click="button1_clickHandler(event)" label="TAKE A PICTURE"/>
+
+    <!--<s:TextArea id="myTextField" height="50"/>-->
     <s:SpriteVisualElement id="sprite1" width="200" height="150"/>
     <!--<s:Image id="theImage" height="100%" width="100%" x="10"/>-->
 
     <fx:Script><![CDATA[
+        private var deviceCameraApp:CameraUI = new CameraUI();
+        private var imageLoader:Loader;
 
 
+        protected function button1_clickHandler(event:MouseEvent):void {
+            this.stage.align = StageAlign.TOP_LEFT;
+            this.stage.scaleMode = StageScaleMode.NO_SCALE;
 
-        import flash.filters.ColorMatrixFilter;
-        private var myCam:CameraUI;
+            if (CameraUI.isSupported) {
+                trace("Initializing camera...");
 
-        private var cam:Camera;
-
-        protected function button1_clickHandler(event:MouseEvent):void
-        {
-//            theImage.filters = [];
-            /*if (CameraUI.isSupported){
-                myCam.launch(MediaType.IMAGE);
-            } else {
-                trace("CAMERA_UI NOT AVAILABLE");
-            }*/
-
-            if (Camera.isSupported)
-            {
-                cam = Camera.getCamera();
-                cam.setMode(1920, 1080, 30, true);
-                if (!cam) {
-                    myTextField.text = "No camera is installed.";
-
-                } else if (cam.muted) {
-                    myTextField.text = "To enable the use of the camera,\n"
-                            + "please click on this text field.\n"
-                            + "When the Flash Player Settings dialog appears,\n"
-                            + "make sure to select the Allow radio button\n"
-                            + "to grant access to your camera.";
-
-                    myTextField.addEventListener(MouseEvent.CLICK, clickHandler);
-
-                }else {
-                    myTextField.text = "Connecting";
-                    connectCamera();
-                }
-
-                //addChild(myTextField);
-
-                //t.addEventListener(TimerEvent.TIMER, timerHandler);
-            }else {
-                myTextField.text = "The Camera class is not supported on this device.";
+                deviceCameraApp.addEventListener(MediaEvent.COMPLETE, imageCaptured);
+                deviceCameraApp.addEventListener(Event.CANCEL, captureCanceled);
+                deviceCameraApp.addEventListener(ErrorEvent.ERROR, cameraError);
+                deviceCameraApp.launch(MediaType.IMAGE);
+            }
+            else {
+                trace("Camera interface is not supported.");
             }
         }
 
-        private function clickHandler(e:MouseEvent):void {
-            Security.showSettings(SecurityPanel.PRIVACY);
+        private function imageCaptured(event:MediaEvent):void {
+            trace("Media captured...");
 
-            cam.addEventListener(StatusEvent.STATUS, statusHandler);
+            var imagePromise:MediaPromise = event.data;
 
-            myTextField.removeEventListener(MouseEvent.CLICK, clickHandler);
-        }
+            if (imagePromise.isAsync) {
+                trace("Asynchronous media promise.");
+                imageLoader = new Loader();
+                imageLoader.contentLoaderInfo.addEventListener(Event.COMPLETE, asyncImageLoaded);
+                imageLoader.addEventListener(IOErrorEvent.IO_ERROR, cameraError);
 
-        private function statusHandler(event:StatusEvent):void {
-
-            if (event.code == "Camera.Unmuted") {
-                connectCamera();
-                cam.removeEventListener(StatusEvent.STATUS, statusHandler);
+                imageLoader.loadFilePromise(imagePromise);
+            }
+            else {
+                trace("Synchronous media promise.");
+                imageLoader.loadFilePromise(imagePromise);
+                showMedia(imageLoader);
             }
         }
 
-        private function connectCamera():void {
-            var scl:Number = 1;
-//            if(cam.width > this.width) {
-//                scl = (cam.width / this.width);
-//            } else {  600          1200
-                scl = (this.width / cam.width);
-//            }
-
-            var vid:Video = new Video(cam.width*scl,  cam.height*scl);
-//            vid.x = 10;
-//            vid.y = 10;
-            vid.attachCamera(cam);
-            sprite1.addChild(vid);
-
-            //t.start();
+        private function captureCanceled(event:Event):void {
+            trace("Media capture canceled.");
+            NativeApplication.nativeApplication.exit();
         }
 
-        private function timerHandler(event:TimerEvent):void {
-            myTextField.y = cam.height + 20;
-            myTextField.text = "";
-            myTextField.appendText("bandwidth: " + cam.bandwidth + "\n");
-            myTextField.appendText("currentFPS: " + Math.round(cam.currentFPS) + "\n");
-            myTextField.appendText("fps: " + cam.fps + "\n");
-            myTextField.appendText("keyFrameInterval: " + cam.keyFrameInterval + "\n");
+        private function asyncImageLoaded(event:Event):void {
+            trace("Media loaded in memory.");
+            showMedia(imageLoader);
         }
 
-        protected function _cc():void
-        {
-            if (CameraUI.isSupported){
-                myCam = new CameraUI();
-                myCam.addEventListener(MediaEvent.COMPLETE, onComplete);
-            } else {
-                trace("CAMERA NOT AVAILABLE");
-            }
+        private function showMedia(loader:Loader):void {
+            var scale:Number = this.width / loader.width;
+            loader.width *=scale;
+            loader.height *=scale;
+            sprite1.addChild(loader);
         }
 
-        private function onComplete(evt:MediaEvent):void{
-//            theImage.source = evt.data.file.url;
+        private function cameraError(error:ErrorEvent):void {
+            trace("Error:" + error.text);
+            NativeApplication.nativeApplication.exit();
         }
-
-        private function transformImage():void
-        {
-            var matrixArray:Array =[
-                .33,.33,.33,0,0,
-                .33,.33,.33,0,0,
-                .33,.33,.33,0,0,
-                0,0,0,1,0];
-            var blackWhiteFilter:ColorMatrixFilter = new ColorMatrixFilter(matrixArray);
-
-            sprite1.filters = [blackWhiteFilter];
-        }
-
         ]]></fx:Script>
 </s:View>
