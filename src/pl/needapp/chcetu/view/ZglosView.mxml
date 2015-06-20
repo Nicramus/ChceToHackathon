@@ -1,4 +1,9 @@
 <?xml version="1.0"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:view="pl.needapp.chcetu.view.*" creationComplete="_cc()" backgroundColor="#234793">
+    <!--<s:List dataProvider="{CATS}" width="100%"/> -->
+    <s:VGroup width="100%" height="100%" id="vgroup">
+    </s:VGroup>
+    <!--
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" creationComplete="_cc()">
 
     <s:Scroller width="100%" height="100%" id="list">
@@ -11,51 +16,55 @@
             <s:VGroup width="100%" id="c2" paddingLeft="10" paddingRight="10" paddingTop="10" paddingBottom="10">
             </s:VGroup>
         </s:VGroup>
-    </s:Scroller>
+    </s:Scroller>     -->
 
     <fx:Script><![CDATA[
+        import spark.components.HGroup;
+
+        [Bindable]
+        [Embed(source="/embed/images/cycling.png")]
+        private var straz:Class;
+        
         import mx.collections.ArrayCollection;
 
         import spark.components.Button;
 
         public static var CATS : Array = [
-            "CHCEtu dróżkę rowerową",
-            "CHCEtu załatajcie pliz dziury w drodze",
-            "CHCEtu inwestować",
-            "CHCEtu zbudować",
-            "CHCEtu cośkolwiek"
-        ];
+            {c:23, l: "Zbuducie tutaj", d:"CHCEtu potrzebuję tutaj...", s:"worker5.png"},
+            {c:23, l: "Wywóz śmieci", d:"Zgłoszenie GOAP", s:"recycle2.png"},
+            {c:23, l: "Straż miejska", d:"Zgłoszenie do Straży Miejskiej", s:"policeman1.png"},
 
-        public static var CATS2 : Array = [
-            "Ciemność widzę, widzę ciemność - nie świecą się lampy",
-            "Uwaga, niebezpieczeństwo - lepsze oznakowanie drogi, światła etc",
-            "Zgłoszenie GOAP",
-            "Zgłoszenie Straż Miejscka",
-            "Tu przydałoby się sprzątanie",
-            "Śmieci do wywiezienia",
-            "A tu coś popsute",
-            "Włączcie adblocka na tą reklamę",
-            "Jakiś jeleń zniszczył zieleń…",
-            "Niedyskretny meloman",
-            "Ktoś tu nie wylewa za kołnierz",
-            "KTO WYPUŚCIŁ PIESKI? KTO! KTO!",
-            "Piesek zostawił coś na trawniku",
-            "Stop  cham."
+            {c:10, l: "Droga rowerowa", d:"CHCEtu dróżkę rowerową", s:"cycling.png"},
+            {c:10, l: "Dziurawa droga", d:"CHCEtu załatajcie pliz dziury w drodze", s:"road41.png"},
+            {c:23, l: "Niebezpieczna droga", d:"Uwaga, niebezpieczeństwo - lepsze oznakowanie drogi, światła etc", s:"street7.png"},
+
+            {c:23, l: "Oświetlenie", d:"Ciemność widzę, widzę ciemność - nie świecą się lampy", s:"light106.png"},
+            {c:23, l: "Dzikie wysypisko", d:"Tu przydałoby się sprzątanie", s:"wiping16.png"},
+            {c:23, l: "Uszkodzone coś...", d:"A tu coś popsute", s:"glasses23.png"},
+
+            {c:23, l: "Nielegalna reklama", d:"Włączcie adblocka na tą reklamę", s:"signal60.png"},
+            {c:23, l: "Uciążliwy hałas", d:"Niedyskretny meloman", s:"loudspeaker17.png"},
+            {c:23, l: "Bezpańskie zwierzęta", d:"KTO WYPUŚCIŁ PIESKI? KTO! KTO!", s:"print48.png"}
         ];
 
         private function _cc():void {
-            for each (var s : String in CATS) {
-                var b : Button = new Button();
-                b.percentWidth = 100;
-                b.label = s;
-                c1.addElement(b);
-            }
-
-            for each (var s : String in CATS2) {
-                var b : Button = new Button();
-                b.percentWidth = 100;
-                b.label = s;
-                c2.addElement(b);
+            var i:int = 0;
+            for each (var o : Object in CATS) {
+                if (i % 3 == 0) {
+                    var hgroup:HGroup = new HGroup();
+                    hgroup.percentHeight = 25;
+                    hgroup.percentWidth = 100;
+                    vgroup.addElement(hgroup);
+                }
+                var b : ZglosKafel = new ZglosKafel();
+                b.percentWidth = 33;
+                b.percentHeight = 95;
+                b.label = o.l + ' (' + o.c + ')';
+                b.count = o.c;
+                b.source = '/embed/images/' + o.s;
+                b.description = o.d;
+                hgroup.addElement(b);
+                i++;
             }
         }
         ]]></fx:Script>
