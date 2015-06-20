@@ -4,6 +4,8 @@
         <s:VerticalLayout />
     </s:layout>
 
+    <s:Label text="Twoja lokalizacja: xxxxx xxxxx" />
+
     <s:Button click="button1_clickHandler(event)" label="TAKE A PICTURE" />
     <s:Button click="transformImage()" label="APPLY FILTER" />
     <s:TextArea id="myTextField"  height="50"/>
@@ -31,7 +33,7 @@
             if (Camera.isSupported)
             {
                 cam = Camera.getCamera();
-
+                cam.setMode(1920, 1080, 30, true);
                 if (!cam) {
                     myTextField.text = "No camera is installed.";
 
@@ -74,7 +76,14 @@
         }
 
         private function connectCamera():void {
-            var vid:Video = new Video(cam.width*4, cam.height*4);
+            var scl:Number = 1;
+//            if(cam.width > this.width) {
+//                scl = (cam.width / this.width);
+//            } else {  600          1200
+                scl = (this.width / cam.width);
+//            }
+
+            var vid:Video = new Video(cam.width*scl,  cam.height*scl);
 //            vid.x = 10;
 //            vid.y = 10;
             vid.attachCamera(cam);
