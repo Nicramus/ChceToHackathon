@@ -67,5 +67,9 @@
                 i++;
             }
         }
+
+        private function onItemSelect(event:MouseEvent):void {
+            navigator.pushView(ZglaszamView);
+        }
         ]]></fx:Script>
 </s:View>
