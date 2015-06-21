@@ -2,7 +2,7 @@
 <s:ViewNavigatorApplication contentBackgroundAlpha="0" addedToStage="_added()" xmlns:fx="http://ns.adobe.com/mxml/2009"
                             xmlns:s="library://ns.adobe.com/flex/spark" firstView="pl.needapp.chcetu.view.HomeView"
                             creationComplete="_cc()" xmlns:ui="pl.needapp.chcetu.view.ui.*"
-                            xmlns:mx="library://ns.adobe.com/flex/mx">
+                            xmlns:mx="library://ns.adobe.com/flex/mx" stateChangeComplete="stch()">
     <s:states>
         <s:State name="normal"/>
         <s:State name="menu"/>
@@ -12,7 +12,7 @@
         <s:ToggleButton label="MENU" click="{setCurrentState(currentState == 'normal' ? 'menu' : 'normal')}"/>
         <mx:Spacer width="20"/>
         <s:Label text="A tu wypasione logo" color="white"/>
-        <ui:LeftMenu width="300" height="700" includeInLayout="false" y="50" includeIn="menu"/>
+        <ui:LeftMenu id="menu11" width="300" height="700" includeInLayout="false" y="50" includeIn="menu"/>
     </s:navigationContent>
 
     <s:actionContent>
@@ -21,6 +21,7 @@
 
 
     <fx:Script><![CDATA[
+        import caurina.transitions.Tweener;
         import caurina.transitions.properties.ColorShortcuts;
 
         import mx.core.FlexGlobals;
@@ -67,6 +68,13 @@
             view.viewPort = null;
             view.dispose();
             view = null;
+        }
+
+        private function stch():void {
+            if (currentState == "menu") {
+                menu11.x = -menu11.width;
+                Tweener.addTween(menu11, {x: 0, time: 1});
+            }
         }
         ]]></fx:Script>
 </s:ViewNavigatorApplication>
