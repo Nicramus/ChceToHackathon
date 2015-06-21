@@ -6,6 +6,7 @@
         xmlns:fx="http://ns.adobe.com/mxml/2009"
         xmlns:s="library://ns.adobe.com/flex/spark"
         width="100%"
+        creationComplete="creationCompleteHandler(event)"
         padding="20"
         >
 
@@ -37,13 +38,18 @@
 
     <s:Spacer height="30" />
 
-    <s:Button id="chceTuBtn" width="100%" label="Ja też CHCĘ to" styleName="buttonOrange"/>
-    <s:Button id="nieChceTuBtn" width="100%" label="Niekoniecznie"/>
+    <s:Button id="chceTuBtn" width="100%" label="Ja też CHCĘ to" styleName="buttonOrange" iconPlacement="left"/>
+    <s:Button id="nieChceTuBtn" width="100%" label="Niekoniecznie" iconPlacement="left" color="#999999"/>
 
     <fx:Script><![CDATA[
+        import mx.events.FlexEvent;
+
         import pl.needapp.chcetu.Config;
         import pl.needapp.chcetu.data.DBWpis;
         import pl.needapp.chcetu.view.MapaView;
+
+        import skins.IconHelper;
+        import skins.SkinConfig;
 
         import spark.components.ViewNavigator;
 
@@ -61,7 +67,7 @@
         [Bindable]
         public function set data(value:DBWpis):void {
             var imageFile:File = File.userDirectory.resolvePath(value.image);
-            if(imageFile.exists) {
+            if (imageFile.exists) {
                 image1.source = imageFile.nativePath;
                 image0.source = imageFile.nativePath;
                 image1.visible = image1.includeInLayout = true;
@@ -71,6 +77,11 @@
 
 
             _data = value;
+        }
+
+        private function creationCompleteHandler(event:FlexEvent):void {
+            chceTuBtn.setStyle("icon", IconHelper.render(Icon_thumbup, SkinConfig.ICON_SIZE, SkinConfig.ICON_SIZE, 0xffffff));
+            nieChceTuBtn.setStyle("icon", IconHelper.render(Icon_thumbdown, SkinConfig.ICON_SIZE, SkinConfig.ICON_SIZE, 0x999999));
         }
         ]]></fx:Script>
 

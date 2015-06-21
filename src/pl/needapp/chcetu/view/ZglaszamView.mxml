@@ -23,15 +23,15 @@
         <s:Label text="{data.address ? data.address : 'ul. Strzelecka 16'}" fontSize="24" top="15" bottom="15" width="100%" textAlign="center" fontStyle="italic"/>
     </s:Group>
 
-    <mx:Spacer height="15"/>
+    <mx:Spacer height="5"/>
     <s:Label text="{data.label}" styleName="h1"/>
     <s:TextArea id="titleInput" width="100%" height="50" prompt="podaj tytuł"/>
 
-    <mx:Spacer height="15"/>
+    <mx:Spacer height="5"/>
     <s:Label text="A może tak dokładniej:" styleName="h1"/>
     <s:TextArea id="descriptionInput" prompt="podaj opis" width="100%" height="80" text="{data.description}" />
 
-    <mx:Spacer height="15"/>
+    <mx:Spacer height="5"/>
     <s:Label text="No i foto:" styleName="h1"/>
     <s:HGroup width="100%" gap="10">
         <s:Button click="button1_clickHandler(event)" label="Dodaj foto z aparatu" fontSize="24" width="100%"/>
