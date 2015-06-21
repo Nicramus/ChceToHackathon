@@ -18,7 +18,7 @@
 
     <s:Spacer height="100%" />
 
-    <s:Button width="100%" label="Dodaj nowy wpis"/>
+    <s:Button width="100%" styleName="buttonOrange" label="Dodaj nowy wpis"/>
 
 
     <fx:Script><![CDATA[
