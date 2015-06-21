@@ -6,9 +6,9 @@
 
 
     <s:VGroup id="myGroup" width="100%">
-        <s:Label text="{data.label}" />
+        <s:Label text="{data.label}" fontWeight="bold" />
 
-        <s:List id="listaWpisow" width="100%" click="otworzWpis()" labelFunction="labelFun" contentBackgroundColor="#02baff"/>
+        <s:List id="listaWpisow" width="100%" click="otworzWpis()" labelFunction="labelFun" alternatingItemColors="[#02baff]"/>
 
         <s:Line height="1" width="100%" />
     </s:VGroup>
