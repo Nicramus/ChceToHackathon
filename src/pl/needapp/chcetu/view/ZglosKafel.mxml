@@ -6,7 +6,7 @@
         <s:Label text="{count}"/>
     </s:HGroup>-->
     <s:Image smooth="true" source="{source}" useHandCursor="true" buttonMode="true" width="100%" height="100%"/>
-    <s:Label text="{label}"/>
+    <s:Label fontSize="10" text="{label}"/>
 
     <fx:Script><![CDATA[
         import spark.components.ViewNavigator;

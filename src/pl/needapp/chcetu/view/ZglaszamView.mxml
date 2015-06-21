@@ -124,6 +124,7 @@
             }
 
             var newObj:Object = {
+
                 label:titleInput.text,
                 date:"2015-01-01 23:11", yes:"23", no:"33",
                 description: descriptionInput.text, image:fileNaME,
