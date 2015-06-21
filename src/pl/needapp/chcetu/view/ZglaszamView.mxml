@@ -114,7 +114,7 @@
             var t2:int = getTimer();
             trace("czas enkodowania to:", t2 - t1);
 
-            var fileNaME:String = "NeedApp/photo1020.jpg";
+            var fileNaME:String = "NeedApp/photo1020.png";
             if(byteArray) {
                 var f:File = File.userDirectory.resolvePath(fileNaME);
                 var fs:FileStream = new FileStream();
