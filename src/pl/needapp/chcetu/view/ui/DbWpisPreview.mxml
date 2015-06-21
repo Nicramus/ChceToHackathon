@@ -7,14 +7,15 @@
         xmlns:s="library://ns.adobe.com/flex/spark"
         width="100%"
         padding="20"
+        horizontalAlign="center"
         >
 
     <s:Label id="titleInput" width="100%" text="{data.label}" fontSize="{Config.fontSize}" fontWeight="bold"/>
 
     <s:Label id="descriptionInput" width="100%" text="{data.description}"  fontSize="{Config.fontSize}"/>
 
-    <s:HGroup verticalAlign="middle">
-        <s:Label text="Miejsce: {data.address}" fontSize="{Config.fontSize}"/>
+    <s:HGroup verticalAlign="middle" width="100%">
+        <s:Label text="Miejsce: {data.address}" fontSize="{Config.fontSize}"  width="100%"/>
         <s:Button label="mapa" click="navigator.pushView(MapaView)"/>
     </s:HGroup>
 
@@ -59,7 +60,7 @@
             }
 
             if(smallImage) {
-                image1.percentWidth = 10;
+                image1.percentWidth = 70;
                 image1.percentHeight = 100;
                 spacer1.includeInLayout = false;
 
