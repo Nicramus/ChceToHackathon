@@ -30,8 +30,8 @@
         import spark.components.Button;
 
         public static var CATS : Array = [
-            {c:23, l: "Zbuducie tutaj", d:"CHCEtu potrzebuję tutaj...", s:"worker5.png"},
-            {c:23, l: "Wywóz śmieci", d:"Zgłoszenie GOAP", s:"recycle2.png"},
+            {c:23, l: "Zróbmy coś razem", d:"CHCEtu potrzebuję tutaj...", s:"worker5.png"},
+            {c:23, l: "Wywóz śmieci GOAP", d:"Zgłoszenie GOAP", s:"recycle2.png"},
             {c:23, l: "Straż miejska", d:"Zgłoszenie do Straży Miejskiej", s:"policeman1.png"},
 
             {c:10, l: "Droga rowerowa", d:"CHCEtu dróżkę rowerową", s:"cycling.png"},
