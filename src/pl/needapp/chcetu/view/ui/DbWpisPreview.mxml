@@ -22,8 +22,8 @@
 
     <s:Spacer height="100%" />
 
-    <s:Button id="chceTuBtn" width="100%" label="Chcę TU"/>
-    <s:Button id="nieChceTuBtn" width="100%" label="Nie Chcę TU"/>
+    <s:Button id="chceTuBtn" width="100%" label="Chcę to TU" styleName="buttonOrange"/>
+    <s:Button id="nieChceTuBtn" width="100%" label="Niekoniecznie"/>
 
     <fx:Script><![CDATA[
         import pl.needapp.chcetu.Config;
