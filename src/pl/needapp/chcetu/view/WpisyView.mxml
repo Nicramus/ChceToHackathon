@@ -4,7 +4,7 @@
         <s:VerticalLayout paddingLeft="30" paddingRight="30" paddingBottom="30" paddingTop="30" gap="5"/>
     </s:layout>
 
-    <s:VGroup id="myGroup" width="100%" gap="20">
+    <!--<s:VGroup id="myGroup" width="100%" gap="20">-->
         <!--<s:HGroup width="100%">
             <s:Label text="" styleName="h1"/>
         </s:HGroup>-->

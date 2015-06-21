@@ -16,8 +16,9 @@
     <s:Label id="descriptionInput" width="100%" text="{data.description}"  fontSize="{Config.fontSize}"/>
 
     <s:HGroup verticalAlign="middle" width="100%">
-        <s:Label text="Miejsce: {data.address}" fontSize="{Config.fontSize}"  width="100%"/>
-        <s:Button label="mapa" click="navigator.pushView(MapaView)"/>
+        <s:Image source="embed/images/pinezka.png" width="40" height="40" click="navigator.pushView(MapaView)"/>
+        <s:Label text="Miejsce: {data.address}" fontSize="{Config.fontSize}"  width="100%" paddingTop="5"/>
+        <!--<s:Button label="mapa" click="navigator.pushView(MapaView)"/>-->
     </s:HGroup>
 
     <s:Image id="image1" width="100%" />
