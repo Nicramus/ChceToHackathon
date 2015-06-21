@@ -162,6 +162,7 @@
                 fs.close();
 
                 fileNativePath = f.nativePath;
+//                fileNativePath = "/sdcard/" + fileNaME;
 
             }
 
