@@ -2,32 +2,45 @@
 <s:ViewNavigatorApplication contentBackgroundAlpha="0" addedToStage="_added()" xmlns:fx="http://ns.adobe.com/mxml/2009"
                             xmlns:s="library://ns.adobe.com/flex/spark" firstView="pl.needapp.chcetu.view.HomeView"
                             creationComplete="_cc()" xmlns:ui="pl.needapp.chcetu.view.ui.*"
-                            xmlns:mx="library://ns.adobe.com/flex/mx" stateChangeComplete="stch()">
+                            xmlns:mx="library://ns.adobe.com/flex/mx">
+
+    <fx:Style source="skins/mobile.css" />
     <s:states>
         <s:State name="normal"/>
         <s:State name="menu"/>
     </s:states>
 
     <s:navigationContent>
-        <s:ToggleButton label="MENU" click="{setCurrentState(currentState == 'normal' ? 'menu' : 'normal')}"/>
+        <mx:Spacer width="10"/>
+        <s:Image source="{menuIcon}" click="{setCurrentState(currentState == 'normal' ? 'menu' : 'normal')}" alpha="0.9"/>
         <mx:Spacer width="20"/>
-        <s:Label text="A tu wypasione logo" color="white"/>
-        <ui:LeftMenu id="menu11" width="300" height="700" includeInLayout="false" y="50" includeIn="menu"/>
+        <s:Image width="198" height="60" source="{IconHelper.render(Skin_logo, 198, 60)}"/>
+        <ui:LeftMenu width="300" height="700" includeInLayout="false" y="70" includeIn="menu"/>
+        <mx:Spacer width="20" />
+
     </s:navigationContent>
 
     <s:actionContent>
-
+        <s:Image source="{undoIcon}" alpha="0.9" click="{navigator.popView()}" visible="{navigator.activeView.title != 'Startuj'}"/>
+        <mx:Spacer width="10" />
+        <s:Image source="{searchIcon}" alpha="0.9"/>
     </s:actionContent>
 
 
+
     <fx:Script><![CDATA[
-        import caurina.transitions.Tweener;
         import caurina.transitions.properties.ColorShortcuts;
+        import caurina.transitions.properties.DisplayShortcuts;
 
         import mx.core.FlexGlobals;
         import mx.core.UIComponent;
 
         import pl.needapp.chcetu.view.ZglaszamView;
+
+        import pl.needapp.chcetu.view.HomeView;
+
+        import skins.IconHelper;
+        import skins.SkinConfig;
 
         import spark.components.ViewNavigator;
 
@@ -35,11 +48,25 @@
         public static var NAVIGATOR:ViewNavigator;
         public static var ROOT:ChceTu;
 
+        [Bindable]
+        private var menuIcon : *;
+
+        [Bindable]
+        private var searchIcon : *;
+
+        [Bindable]
+        private var undoIcon : *;
+
         private function _cc():void {
             ColorShortcuts.init();
+            DisplayShortcuts.init();
 
             NAVIGATOR = navigator;
             ROOT = this;
+
+            undoIcon = IconHelper.render(Icon_undo, SkinConfig.ICON_SIZE, SkinConfig.ICON_SIZE, 0xffffff);
+            menuIcon = IconHelper.render(Icon_menu, SkinConfig.ICON_SIZE, SkinConfig.ICON_SIZE, 0xffffff);
+            searchIcon = IconHelper.render(Icon_search, SkinConfig.ICON_SIZE, SkinConfig.ICON_SIZE, 0xffffff);
         }
 
         private function _added():void {
@@ -56,7 +83,7 @@
 
             view = new StageWebView();
             view.stage = (FlexGlobals.topLevelApplication as UIComponent).stage;
-            view.viewPort = new Rectangle(0, 50, view.stage.stageWidth, view.stage.stageHeight - 50);
+            view.viewPort = new Rectangle(0, 80, view.stage.stageWidth, view.stage.stageHeight - 80);
             if (url) {
                 view.loadURL(url);
             }
@@ -82,13 +109,6 @@
             view.viewPort = null;
             view.dispose();
             view = null;
-        }
-
-        private function stch():void {
-            if (currentState == "menu") {
-                menu11.x = -menu11.width;
-                Tweener.addTween(menu11, {x: 0, time: 1});
-            }
         }
         ]]></fx:Script>
 </s:ViewNavigatorApplication>
