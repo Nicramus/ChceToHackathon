@@ -22,7 +22,6 @@
     <s:Button id="saveBtn" click="save(event)" width="100%" label="ZAPISZ"/>
 
     <fx:Script><![CDATA[
-        import com.adobe.image.JPGEncoder;
 
         import pl.needapp.chcetu.data.DB;
 
