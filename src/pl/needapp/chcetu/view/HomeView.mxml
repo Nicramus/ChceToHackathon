@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <s:View title="Start" xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
-        xmlns:mx="library://ns.adobe.com/flex/mx" show="_show()" creationComplete="_cc()" xmlns:ui="pl.needapp.chcetu.view.ui.*">
+        show="_show()" creationComplete="_cc()" xmlns:ui="pl.needapp.chcetu.view.ui.*">
     <s:layout>
         <s:VerticalLayout gap="5" horizontalAlign="center" />
     </s:layout>
 
-    <ui:DbWpisPreview data="{DB.instance.dbWpisy[0] as DBWpis}" navigator="{navigator}" width="100%" height="650" smallImage="true"/>
+    <ui:DbWpisPreview id="currentPreview" data="{DB.instance.dbWpisy[cindex] as DBWpis}" navigator="{navigator}" width="100%" height="650" smallImage="true" />
 
     <s:Spacer height="100%" />
 
@@ -20,13 +20,21 @@
         import skins.IconHelper;
         import skins.SkinConfig;
 
+        private var cindex:int = 0;
+
         private function _show():void {
 
         }
 
         private function _cc():void {
             b1.setStyle("icon", IconHelper.render(Icon_pin, SkinConfig.BIG_ICON_SIZE, SkinConfig.BIG_ICON_SIZE, 0xffffff));
+            currentPreview.addEventListener(DbWpisPreview.USER_ACTION, currentPreviewActionHandler);
+        }
 
+        private function currentPreviewActionHandler(event:DbWpisPreview):void {
+            if(cindex < DB.instance.dbWpisy.length) {
+
+            }
         }
 
         ]]></fx:Script>
