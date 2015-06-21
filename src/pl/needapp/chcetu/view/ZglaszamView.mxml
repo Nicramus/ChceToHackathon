@@ -2,10 +2,14 @@
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
         xmlns:mx="library://ns.adobe.com/flex/mx" creationComplete="_cc()" title="Zgłaszam coś" color="white">
     <s:layout>
-        <s:VerticalLayout paddingLeft="30" paddingRight="30" paddingBottom="30" paddingTop="30" gap="5"/>
+        <s:VerticalLayout padding="25" gap="15"/>
     </s:layout>
 
+    <!--<s:Label text="Miejsce: {data.address ? data.address : 'ul. Strzelecka 16'}" fontSize="{Config.fontSize}"/>-->
     <s:HGroup width="100%" verticalAlign="middle">
+        <!--<s:Button styleName="buttonOrange" click="button1_clickHandler(event)" label="Foto" width="100%"/>-->
+        <!--<s:Button styleName="buttonOrange"  click="button1_clickHandler(event)" label="Z pliku" width="100%"/>-->
+
         <s:Label text="CHCE coś zgłosić tutaj: " styleName="h1" width="100%"/>
         <s:Label text="A może gdzieś indziej?" textDecoration="underline" fontSize="18" />
     </s:HGroup>
@@ -18,18 +22,22 @@
         </s:Rect>
         <s:Label text="{data.address ? data.address : 'ul. Strzelecka 16'}" fontSize="24" top="15" bottom="15" width="100%" textAlign="center" fontStyle="italic"/>
     </s:Group>
+
     <mx:Spacer height="15"/>
     <s:Label text="{data.label}" styleName="h1"/>
     <s:TextArea id="titleInput" width="100%" height="50" prompt="podaj tytuł"/>
+
     <mx:Spacer height="15"/>
     <s:Label text="A może tak dokładniej:" styleName="h1"/>
     <s:TextArea id="descriptionInput" prompt="podaj opis" width="100%" height="80" text="{data.description}" />
+
     <mx:Spacer height="15"/>
     <s:Label text="No i foto:" styleName="h1"/>
     <s:HGroup width="100%" gap="10">
         <s:Button click="button1_clickHandler(event)" label="Dodaj foto z aparatu" fontSize="24" width="100%"/>
         <s:Button click="button1_clickHandler(event)" label="Dodaj foto z pliku" fontSize="24" width="100%"/>
     </s:HGroup>
+
     <s:Group width="100%" height="100%">
         <s:Rect width="100%" height="100%" radiusX="3" radiusY="3" alpha="0.1">
             <s:fill>
@@ -44,6 +52,8 @@
 
     <fx:Script><![CDATA[
         import mx.formatters.DateFormatter;
+
+        import pl.needapp.chcetu.Config;
 
         import pl.needapp.chcetu.data.DB;
         import pl.needapp.chcetu.data.DBWpis;
@@ -140,23 +150,30 @@
             var t2:int = getTimer();
             trace("czas enkodowania to:", t2 - t1);
 
-            var fileNaME:String = "NeedApp/photo1020.png";
+
+            var fileNativePath:String = "";
             if(byteArray) {
+                var rand:int = (Math.random() * 100);
+                var fileNaME:String = "NeedApp/photo" + rand + ".png";
                 var f:File = File.userDirectory.resolvePath(fileNaME);
                 var fs:FileStream = new FileStream();
-                fs.open(f,FileMode.WRITE);
+                fs.open(f, FileMode.WRITE);
                 fs.writeBytes(byteArray);
                 fs.close();
+
+                fileNativePath = f.nativePath;
+//                fileNativePath = "/sdcard/" + fileNaME;
+
             }
 
             var dateFormat:DateFormatter = new DateFormatter("DD-MM-YYY hh:mm");
 
             var nowyWpis:DBWpis = new DBWpis(titleInput.text, dateFormat.format(new Date()), "1", "0", descriptionInput.text,
-                    fileNaME, "droga_rowerowa", "Adam", [], data.address ? data.address : 'ul. Strzelecka 16')
+                    fileNativePath, "droga_rowerowa", "Adam", [], data.address ? data.address : 'ul. Strzelecka 16');
 
             DB.instance.dbWpisy.addItem(nowyWpis);
 
-            navigator.pushView(WpisyView);
+            navigator.pushView(WpisyView, {label : "Moje wpisy", icon : IconHelper.renderDefault(Icon_notes_list), view : WpisyView, type:"my" });
 
         }
 

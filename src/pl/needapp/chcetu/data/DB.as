@@ -15,16 +15,16 @@ public class DB {
     public var dbWpisy:ArrayCollection = new ArrayCollection([
 
         new DBWpis("Przydałaby się droga rowerowa", "2015-01-01 23:11", "23", "33", "Ulica Obornicka jest niebezpieczna dla rowerzystów i przydałaby się tam droga rowerowa",
-                File.applicationDirectory.resolvePath("embed/images/cycling.png").nativePath, "droga_rowerowa", "Adam", [new DBComment("Też tak uważam", "Magda")], "Lechicka 43"),
+                "embed/images/zdjecie1.png", "droga_rowerowa", "Adam", [new DBComment("Też tak uważam", "Magda")], "Lechicka 43"),
 
         new DBWpis("Brak koszy w parku", "2015-01-01 23:11", "23", "33", "W parku Cytadela brakuje koszy na śmieci. ",
-                File.applicationDirectory.resolvePath("embed/images/cycling.png").nativePath, "czystosc", "Magda", [new DBComment("Też tak uważam", "Magda")], "Warszawska 22"),
+                "embed/images/zdjecie3.png", "czystosc", "Magda", [new DBComment("Też tak uważam", "Magda")], "Warszawska 22"),
 
         new DBWpis("Budżet Obywatelski: droga rowerowa", "2015-01-01 23:11", "23", "33", "Propozycja Stowarzyszenia Moja Sprawa - droga rowerowa na Ratajach",
-                File.applicationDirectory.resolvePath("embed/images/cycling.png").nativePath, "rowery", "Jan", [new DBComment("Też tak uważam", "Magda")], "Warszawska 22"),
+                "embed/images/zdjecie1.png", "rowery", "Jan", [new DBComment("Też tak uważam", "Magda")], "Warszawska 22"),
 
-        new DBWpis("Oznakowanie przejścia dla pieszych", "2015-01-01 23:11", "23", "33", "W parku Cytadela brakuje koszy na śmieci. ",
-                File.applicationDirectory.resolvePath("embed/images/cycling.png").nativePath, "czystosc", "City", [new DBComment("Też tak uważam", "Magda")], "Cytadela"),
+        new DBWpis("Oznakowanie przejścia dla pieszych", "2015-01-01 23:11", "23", "33", "Potrzeba lepszego oznakowania przejścia dla pieszych.",
+                "embed/images/zdjecie2.png", "czystosc", "City", [new DBComment("Też tak uważam", "Magda")], "Cytadela"),
 
     ]);
 
