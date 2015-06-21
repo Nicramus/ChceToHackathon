@@ -11,7 +11,7 @@
 
     <s:Label id="titleInput" width="100%" text="{data.label}" fontSize="{Config.fontSize}" fontWeight="bold"/>
 
-    <s:Label id="descriptionInput" width="100%" height="100" text="{data.description}"  fontSize="{Config.fontSize}"/>
+    <s:Label id="descriptionInput" width="100%" text="{data.description}"  fontSize="{Config.fontSize}"/>
 
     <s:HGroup verticalAlign="middle">
         <s:Label text="Miejsce: {data.address}" fontSize="{Config.fontSize}"/>
@@ -20,10 +20,12 @@
 
     <s:Image id="image1" width="100%"/>
 
-    <s:Spacer height="100%" />
-
-    <s:Button id="chceTuBtn" width="100%" label="Chcę TU"/>
-    <s:Button id="nieChceTuBtn" width="100%" label="Nie Chcę TU"/>
+    <s:Spacer height="100%" id="spacer1"/>
+    <s:HGroup width="100%" verticalAlign="middle">
+        <s:Label id="komentarzeBtn" width="100%" text="Komentarze (3)" textAlign="center"  textDecoration="underline" fontSize="{Config.fontSize}"/>
+        <s:Label id="chceTuBtn" width="100%" text="Nie akceptuję" textAlign="center" textDecoration="underline" fontSize="{Config.fontSize}"/>
+        <s:Button id="nieChceTuBtn" width="100%" label="Akceptuję" styleName="buttonOrange" fontSize="{Config.fontSize}"/>
+    </s:HGroup>
 
     <fx:Script><![CDATA[
         import pl.needapp.chcetu.Config;
@@ -38,6 +40,9 @@
         [Bindable]
         public var navigator:ViewNavigator;
 
+
+        public var smallImage:Boolean = false;
+
         [Bindable]
         public function get data():DBWpis {
             return _data;
@@ -51,6 +56,13 @@
                 image1.visible = image1.includeInLayout = true;
             } else {
                 image1.visible = image1.includeInLayout = false;
+            }
+
+            if(smallImage) {
+                image1.percentWidth = 10;
+                image1.percentHeight = 100;
+                spacer1.includeInLayout = false;
+
             }
 
             _data = value;

@@ -3,7 +3,7 @@
  */
 package pl.needapp.chcetu {
 public class Config {
-    public static const fontSize:Number = 30;
+    public static const fontSize:Number = 28;
     public function Config() {
     }
 }
