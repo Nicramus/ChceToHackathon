@@ -61,7 +61,7 @@
                 b.percentHeight = 95;
                 b.label = o.l + ' (' + o.c + ')';
                 b.count = o.c;
-                b.source = '/embed/images/' + o.s;
+                b.source = 'embed/images/' + o.s;
                 b.description = o.d;
                 b.navigator = navigator;
                 hgroup.addElement(b);
