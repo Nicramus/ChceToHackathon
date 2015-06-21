@@ -4,23 +4,32 @@
         <s:VerticalLayout gap="15"/>
     </s:layout>
 
-    <s:Label text="Moje wpisy" />
+    <s:Label text="{data.label}" />
 
-    <s:List id="listaWpisow" width="100%"/>
+    <s:List id="listaWpisow" width="100%" labelFunction="labelFun" fontSize="18" click="listClick(event)"/>
 
     <fx:Script><![CDATA[
         import mx.collections.ArrayCollection;
 
         import pl.needapp.chcetu.data.DB;
+        import pl.needapp.chcetu.data.DBWpis;
 
         private function _show():void {
             var a:ArrayCollection = new ArrayCollection();
             for each (var o:Object in DB.instance.dbWpisy) {
-                if (o.user == "Adam") {
+                if ((data.type == 'my' && o.user == "Adam") || (data.type == 'rate' && o.user != "Adam") || data.type == 'all') {
                     a.addItem(o);
                 }
             }
             listaWpisow.dataProvider = a;
+        }
+
+        private function labelFun(data:Object):String {
+             return data.label + ' (' + data.address + ')';
+        }
+
+        private function listClick(event:Event):void {
+            navigator.pushView(ZglaszamView, event.currentTarget.selectedItem);
         }
 
         ]]></fx:Script>

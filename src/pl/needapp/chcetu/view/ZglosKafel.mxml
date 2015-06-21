@@ -29,6 +29,8 @@
         [Bindable]
         public var count:String;
         [Bindable]
+        public var address:String;
+        [Bindable]
         public var navigator:ViewNavigator;
 
         private function _cc():void {

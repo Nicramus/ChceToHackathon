@@ -30,21 +30,21 @@
         import spark.components.Button;
 
         public static var CATS : Array = [
-            {c:23, l: "Zróbmy to razem!", d:"CHCEtu potrzebuję tutaj...", s:"Partnership_512.png"},
-            {c:23, l: "Moja propozycja", d:"CHCEtu potrzebuję tutaj...", s:"worker5.png"},
-            {c:10, l: "Droga rowerowa", d:"CHCEtu dróżkę rowerową", s:"cycling.png"},
+            {c:26, l: "Zróbmy to razem!", d:"Zróbmy wspólnie: ", s:"Partnership_512.png", to: "mieszkańcy Poznania"},
+            {c:23, l: "Niech miasto zrobi :)", d:"Proponuję żeby Miasto Poznań", s:"worker5.png", to: "Urząd Miasta Poznania"},
+            {c:10, l: "Droga rowerowa", d:"Proponuję drogę rowerową", a: "Smoluchowskiego 13", s:"cycling.png", to: "Urząd Miasta Poznania"},
 
-            {c:23, l: "Straż miejska", d:"Zgłoszenie do Straży Miejskiej", s:"policeman.png"},
-            {c:23, l: "Nielegalna reklama", d:"Włączcie adblocka na tą reklamę", s:"signal60.png"},
-            {c:23, l: "Bezpańskie zwierzęta", d:"KTO WYPUŚCIŁ PIESKI? KTO! KTO!", s:"print48.png"},
+            {c:14, l: "Straż miejska", d:"Zgłoszenie do Straży Miejskiej", a: "Ławica", s:"policeman.png", to: "Straż Miejska Poznań"},
+            {c:13, l: "Nielegalna reklama", d:"Nielegalna reklama", a:"Obornicka 21", s:"signal60.png", to: "Straż Miejska Poznań"},
+            {c:2, l: "Bezpańskie zwierzęta", d:"Krzątają się tu zwierzęta", a:"Strzeszyńska 14", s:"print48.png", to: "Straż Miejska Poznań"},
 
-            {c:23, l: "Wywóz śmieci GOAP", d:"Zgłoszenie GOAP", s:"recycle2.png"},
-            {c:23, l: "Dzikie wysypisko", d:"Tu przydałoby się sprzątanie", s:"wiping16.png"},
-            {c:23, l: "Uszkodzone coś...", d:"A tu coś popsute", s:"glasses23.png"},
+            {c:25, l: "Wywóz śmieci GOAP", d:"Zgłoszenie do GOAP", s:"recycle2.png", to:"GOAP"},
+            {c:4, l: "Dzikie wysypisko", d:"Tu przydałoby się sprzątanie", a: "Koszalińska 44", s:"wiping16.png", to:"GOAP"},
+            {c:6, l: "Uszkodzone coś...", d:"Popsute mienie miasta", a: "Ratajczaka 19", s:"glasses23.png", to: "Urząd Miasta Poznania"},
 
-            {c:23, l: "Niebezpieczna droga", d:"Uwaga, niebezpieczeństwo - lepsze oznakowanie drogi, światła etc", s:"street7.png"},
-            {c:23, l: "Oświetlenie", d:"Ciemność widzę, widzę ciemność - nie świecą się lampy", s:"light106.png"},
-            {c:23, l: "Uciążliwy hałas", d:"Niedyskretny meloman", s:"loudspeaker17.png"}
+            {c:1, l: "Bezpieczniejsza droga", d:"Zgłaszam problem", a: "Grunwaldzka 33", s:"street7.png", to: "Zarząd Dróg Poznań"},
+            {c:7, l: "Dziury, dziurki", d:"Dziurawa jezdnia", a: "Grunwaldzka 33", s:"roads5.png", to: "Zarząd Dróg Poznań"},
+            {c:4, l: "Oświetlenie", d:"Brak oświetlenia / problem z lampą", a: "Towarowa 55", s:"light106.png", to: "Zarząd Dróg Poznań"}
 
         ];
 
@@ -67,6 +67,7 @@
                 b.source = 'embed/images/' + o.s;
                 b.description = o.d;
                 b.navigator = navigator;
+                b.address = o.a;
                 hgroup.addElement(b);
                 i++;
             }

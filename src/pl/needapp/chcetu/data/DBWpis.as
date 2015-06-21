@@ -13,8 +13,9 @@ public class DBWpis {
     public var category:String;
     public var user:String;
     public var comments:Array;
+    public var address:String;
 
-    public function DBWpis(label:String, date:String, yes:String, no:String, description:String, image:String, category:String, user:String, comments:Array) : void {
+    public function DBWpis(label:String, date:String, yes:String, no:String, description:String, image:String, category:String, user:String, comments:Array, address:String) : void {
         this.label = label;
         this.date = date;
         this.yes = yes;
@@ -24,6 +25,7 @@ public class DBWpis {
         this.category = category;
         this.user = user;
         this.comments = comments;
+        this.address = address;
     }
 }
 }

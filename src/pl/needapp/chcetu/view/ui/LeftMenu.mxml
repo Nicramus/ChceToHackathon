@@ -24,9 +24,9 @@
         private function _cc():void {
             var m : Array = [
                 {label : "Start", icon : IconHelper.renderDefault(Icon_home), view : HomeView },
-                {label : "Moje wpisy", icon : IconHelper.renderDefault(Icon_notes_list), view : WpisyView },
-                {label : "Oceń wpisy", icon : IconHelper.renderDefault(Icon_notes_list), view : WpisyView },
-                {label : "Wszystkie wpisy", icon : IconHelper.renderDefault(Icon_notes_list), view : WpisyView },
+                {label : "Moje wpisy", icon : IconHelper.renderDefault(Icon_notes_list), view : WpisyView, type:"my" },
+                {label : "Oceń wpisy", icon : IconHelper.renderDefault(Icon_notes_list), view : WpisyView, type:"rate" },
+                {label : "Wszystkie wpisy", icon : IconHelper.renderDefault(Icon_notes_list), view : WpisyView, type:"all" },
                 {label : "Mapa", icon : IconHelper.renderDefault(Icon_notes_list), view : MapaView},
                 {label : "Zgłoś", icon : IconHelper.renderDefault(Icon_notes_list), view : ZglosView},
                 {label : "Moje konto", icon : IconHelper.renderDefault(Icon_person_single), view : KontoView},
@@ -40,7 +40,7 @@
         private function _onListItemClick(event:Event):void {
             var item : Object = event.target['data'];
             if (item) {
-                ChceTu.NAVIGATOR.pushView(item.view);
+                ChceTu.NAVIGATOR.pushView(item.view, item);
                 ChceTu.ROOT.hideMenu();
             }
         }
