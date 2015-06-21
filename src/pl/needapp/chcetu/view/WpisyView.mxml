@@ -4,21 +4,21 @@
         <s:VerticalLayout gap="15" paddingLeft="15" paddingRight="15" paddingTop="20" paddingBottom="20"/>
     </s:layout>
 
-    <s:HGroup id="cityGroup">
+    <s:VGroup id="cityGroup" width="100%">
         <s:Label text="Od miasta *know how" />
 
         <s:List id="listaWpisowMiasta" width="100%" click="otworzWpisMiasta(event)" labelField="label"/>
 
-        <s:Line height="1" width="100%" />
-    </s:HGroup>
+        <s:Line height="1" width="100%"/>
+    </s:VGroup>
 
-    <s:HGroup id="myGroup">
+    <s:VGroup id="myGroup" width="100%">
         <s:Label text="Moje wpisy:" />
 
         <s:List id="listaWpisow" width="100%" click="otworzWpis()" labelField="label"/>
 
         <s:Line height="1" width="100%" />
-    </s:HGroup>
+    </s:VGroup>
 
 
     <s:Label id="noDataLabel" text="Aktualnie brak wpisów w okolicy."  visible="false" includeInLayout="false" />
@@ -53,7 +53,7 @@
                     b.addItem(o);
                 }
             }
-            listaWpisow.dataProvider = b;
+            listaWpisowMiasta.dataProvider = b;
             cityGroup.visible  = cityGroup.includeInLayout = (b.length > 0);
 
             //BRAK WPISÓW

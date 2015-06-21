@@ -16,6 +16,8 @@ public class DB {
 
         new DBWpis("Brak koszy w parku", "2015-01-01 23:11", "23", "33", "W parku Cytadela brakuje koszy na śmieci. ", "NeedApp/photo1020.png", "czystosc", "Adam", [new DBComment("Też tak uważam", "Magda")]),
 
+        new DBWpis("Oznakowanie przejścia dla pieszych", "2015-01-01 23:11", "23", "33", "W parku Cytadela brakuje koszy na śmieci. ", "NeedApp/photo1020.png", "czystosc", "City", [new DBComment("Też tak uważam", "Magda")]),
+
     ]);
 
     [Bindable]
