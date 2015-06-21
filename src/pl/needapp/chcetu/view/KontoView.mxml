@@ -1,8 +1,19 @@
 <?xml version="1.0"?>
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" creationComplete="_cc()">
 
-    <s:Scroller width="100%" height="100%" id="list">
-
+    <s:Scroller width="100%" height="100%" id="list" fontSize="12">
+        <s:VGroup verticalCenter="">
+                <s:Label text="Twoja reputacja na dzielnicy" width="100%" textAlign="center"/>
+                <s:Image smooth="true" source="embed/images/stars.png" height="50" width="100%" verticalAlign="middle" horizontalAlign="center"/>
+                <s:Label text="Twoje zgłoszenia" width="100%" textAlign="center"/>
+                <s:Label fontWeight="bold" text="2" width="100%" textAlign="center"/>
+                <s:Label paddingTop="10" text="Potwierdzenia / odrzucenia / komentarze do Twoich zgłoszeń" width="100%" textAlign="center"/>
+            <s:Label fontStyle="italic" text="Akcje innych osób dotyczące Twoich zgłoszeń" width="100%" textAlign="center"/>
+                <s:Label fontWeight="bold" text="5 / 1 / 0" width="100%" textAlign="center"/>
+                <s:Label paddingTop="10" text="Twoje potwierdzenia / odrzucenia / komentarze" width="100%" textAlign="center"/>
+            <s:Label fontStyle="italic" text="Twoje akcje dotyczące zgłoszeń innych osób" width="100%" textAlign="center"/>
+                <s:Label fontWeight="bold" text="10 / 2 / 2" width="100%" textAlign="center"/>
+        </s:VGroup>
 
     </s:Scroller>
 
