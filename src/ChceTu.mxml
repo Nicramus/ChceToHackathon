@@ -21,7 +21,7 @@
     </s:navigationContent>
 
     <s:actionContent>
-        <s:Image source="{undoIcon}" alpha="0.9" click="{navigator.popView()}" visible="{navigator.activeView.title != 'Startuj'}"/>
+        <s:Image source="{undoIcon}" alpha="0.9" click="{navigator.popView()}" visible="{navigator.activeView.title != 'Start'}"/>
         <mx:Spacer width="10" />
         <s:Image source="{searchIcon}" alpha="0.9"/>
     </s:actionContent>
