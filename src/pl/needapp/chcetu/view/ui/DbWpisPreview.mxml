@@ -28,16 +28,47 @@
     <s:HGroup width="100%" verticalAlign="middle">
         <s:Label id="komentarzeBtn" width="100%" text="Komentarze (3)" textAlign="center"  textDecoration="underline" fontSize="{Config.fontSize}" click="dispatchAction()"/>
         <s:Label id="_chceTuBtn" width="100%" text="Nie akceptuję (1)" textAlign="center" textDecoration="underline" fontSize="{Config.fontSize}" click="dispatchAction()"/>
-        <s:Button id="_nieChceTuBtn" width="100%" label="Akceptuję (2)" styleName="buttonOrange" fontSize="{Config.fontSize}" click="dispatchAction()"/>
+        <s:Button iconPlacement="left" id="_nieChceTuBtn" width="100%" label="Akceptuję (2)" styleName="buttonOrange" fontSize="{Config.fontSize}" click="dispatchAction()"/>
     </s:HGroup>
 
     <!--<s:Button id="chceTuBtn" width="100%" label="Chcę TU"/>-->
     <!--<s:Button id="nieChceTuBtn" width="100%" label="Nie Chcę TU"/>-->
 
-    <s:Spacer height="30" />
 
+
+   <!-- WERSJA KUBA - wrzuccie jak tam chcecie... -->
+
+    <!--
+
+    <s:Label text="Co?" width="100%" fontSize="22"/>
+    <s:HGroup width="100%" verticalAlign="middle" gap="20">
+        <s:Image id="image0" width="100" height="100"/>
+        <s:VGroup width="100%">
+            <s:Label id="titleInput" width="100%" text="{data.label}" fontSize="{Config.fontSize}" fontWeight="bold"/>
+
+            <s:Label id="descriptionInput" width="100%" height="100" text="{data.description}" fontStyle="italic" fontSize="{Config.fontSize - 2}"/>
+        </s:VGroup>
+
+    </s:HGroup>
+
+    <s:HGroup width="100%" verticalAlign="middle">
+        <s:Label text="Gdzie?" width="100%" fontSize="22"/>
+        <s:Label textDecoration="underline" text="Zobacz na mapie" click="navigator.pushView(MapaView)" buttonMode="true" fontSize="22"/>
+    </s:HGroup>
+    <s:Group width="100%" >
+        <s:Rect width="100%" height="100%" radiusX="3" radiusY="3" alpha="0.2">
+            <s:fill>
+                <s:SolidColor color="white" />
+            </s:fill>
+        </s:Rect>
+        <s:Label text="{data.address ? data.address : 'ul. Strzelecka 16'}" fontSize="24" top="15" bottom="15" width="100%" textAlign="center" fontStyle="italic"/>
+    </s:Group>
+
+    <s:Spacer height="30" />
     <s:Button id="chceTuBtn" width="100%" label="Ja też CHCĘ to" styleName="buttonOrange" iconPlacement="left"/>
     <s:Button id="nieChceTuBtn" width="100%" label="Niekoniecznie" iconPlacement="left" color="#999999"/>
+    -->
+
 
     <fx:Script><![CDATA[
         import mx.events.FlexEvent;
@@ -93,8 +124,8 @@
         }
 
         private function creationCompleteHandler(event:FlexEvent):void {
-            chceTuBtn.setStyle("icon", IconHelper.render(Icon_thumbup, SkinConfig.ICON_SIZE, SkinConfig.ICON_SIZE, 0xffffff));
-            nieChceTuBtn.setStyle("icon", IconHelper.render(Icon_thumbdown, SkinConfig.ICON_SIZE, SkinConfig.ICON_SIZE, 0x999999));
+            //_chceTuBtn.setStyle("icon", IconHelper.render(Icon_thumbup, SkinConfig.ICON_SIZE, SkinConfig.ICON_SIZE, 0xffffff));
+            _nieChceTuBtn.setStyle("icon", IconHelper.render(Icon_thumbup, SkinConfig.ICON_SIZE, SkinConfig.ICON_SIZE, 0xffffff));
         }
         ]]></fx:Script>
 
