@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!--
+  Created by Bartek on 2015-06-21.
+-->
+<s:VGroup
+        xmlns:fx="http://ns.adobe.com/mxml/2009"
+        xmlns:s="library://ns.adobe.com/flex/spark"
+        width="100%"
+        padding="20"
+        >
+
+    <s:Label id="titleInput" width="100%" text="{data.label}" fontSize="{Config.fontSize}" fontWeight="bold"/>
+
+    <s:Label id="descriptionInput" width="100%" height="100" text="{data.description}"  fontSize="{Config.fontSize}"/>
+
+    <s:HGroup verticalAlign="middle">
+        <s:Label text="Miejsce: {data.address}" fontSize="{Config.fontSize}"/>
+        <s:Button label="mapa" click="navigator.pushView(MapaView)"/>
+    </s:HGroup>
+
+    <s:Image id="image1" width="100%"/>
+
+    <s:Spacer height="100%" />
+
+    <s:Button id="chceTuBtn" width="100%" label="Chcę TU"/>
+    <s:Button id="nieChceTuBtn" width="100%" label="Nie Chcę TU"/>
+
+    <fx:Script><![CDATA[
+        import pl.needapp.chcetu.Config;
+        import pl.needapp.chcetu.data.DBWpis;
+        import pl.needapp.chcetu.view.MapaView;
+
+        import spark.components.ViewNavigator;
+
+        [Bindable]
+        private var _data:DBWpis;
+
+        [Bindable]
+        public var navigator:ViewNavigator;
+
+        [Bindable]
+        public function get data():DBWpis {
+            return _data;
+        }
+
+        [Bindable]
+        public function set data(value:DBWpis):void {
+            var imageFile:File = File.userDirectory.resolvePath(value.image);
+            if(imageFile.exists) {
+                image1.source = imageFile.nativePath;
+                image1.visible = image1.includeInLayout = true;
+            } else {
+                image1.visible = image1.includeInLayout = false;
+            }
+
+            _data = value;
+        }
+        ]]></fx:Script>
+
+</s:VGroup>

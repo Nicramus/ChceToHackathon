@@ -6,19 +6,25 @@
  * To change this template use File | Settings | File Templates.
  */
 package pl.needapp.chcetu.data {
+import flash.filesystem.File;
+
 import mx.collections.ArrayCollection;
 
 public class DB {
     [Bindable]
     public var dbWpisy:ArrayCollection = new ArrayCollection([
 
-        new DBWpis("Przydałaby się droga rowerowa", "2015-01-01 23:11", "23", "33", "Ulica Obornicka jest niebezpieczna dla rowerzystów i przydałaby się tam droga rowerowa", "NeedApp/droga1.jpg", "droga_rowerowa", "Adam", [new DBComment("Też tak uważam", "Magda")], "Lechicka 43"),
+        new DBWpis("Przydałaby się droga rowerowa", "2015-01-01 23:11", "23", "33", "Ulica Obornicka jest niebezpieczna dla rowerzystów i przydałaby się tam droga rowerowa",
+                File.applicationDirectory.resolvePath("embed/images/cycling.png").nativePath, "droga_rowerowa", "Adam", [new DBComment("Też tak uważam", "Magda")], "Lechicka 43"),
 
-        new DBWpis("Brak koszy w parku", "2015-01-01 23:11", "23", "33", "W parku Cytadela brakuje koszy na śmieci. ", "NeedApp/photo1020.png", "czystosc", "Magda", [new DBComment("Też tak uważam", "Magda")], "Warszawska 22"),
+        new DBWpis("Brak koszy w parku", "2015-01-01 23:11", "23", "33", "W parku Cytadela brakuje koszy na śmieci. ",
+                File.applicationDirectory.resolvePath("embed/images/cycling.png").nativePath, "czystosc", "Magda", [new DBComment("Też tak uważam", "Magda")], "Warszawska 22"),
 
-        new DBWpis("Budżet Obywatelski: droga rowerowa", "2015-01-01 23:11", "23", "33", "Propozycja Stowarzyszenia Moja Sprawa - droga rowerowa na Ratajach", "NeedApp/photo1020.png", "rowery", "Jan", [new DBComment("Też tak uważam", "Magda")], "Warszawska 22"),
+        new DBWpis("Budżet Obywatelski: droga rowerowa", "2015-01-01 23:11", "23", "33", "Propozycja Stowarzyszenia Moja Sprawa - droga rowerowa na Ratajach",
+                File.applicationDirectory.resolvePath("embed/images/cycling.png").nativePath, "rowery", "Jan", [new DBComment("Też tak uważam", "Magda")], "Warszawska 22"),
 
-        new DBWpis("Oznakowanie przejścia dla pieszych", "2015-01-01 23:11", "23", "33", "W parku Cytadela brakuje koszy na śmieci. ", "NeedApp/photo1020.png", "czystosc", "City", [new DBComment("Też tak uważam", "Magda")], "Cytadela"),
+        new DBWpis("Oznakowanie przejścia dla pieszych", "2015-01-01 23:11", "23", "33", "W parku Cytadela brakuje koszy na śmieci. ",
+                File.applicationDirectory.resolvePath("embed/images/cycling.png").nativePath, "czystosc", "City", [new DBComment("Też tak uważam", "Magda")], "Cytadela"),
 
     ]);
 
