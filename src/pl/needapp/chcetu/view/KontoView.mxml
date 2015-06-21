@@ -4,7 +4,7 @@
     <s:Scroller width="100%" height="100%" id="list" fontSize="12">
         <s:VGroup verticalCenter="">
                 <s:Label text="Twoja reputacja na dzielnicy" width="100%" textAlign="center"/>
-                <s:Image smooth="true" source="embed/images/stars.png" height="50" width="100%" verticalAlign="middle" horizontalAlign="center"/>
+                <s:Image smooth="true" source="@Embed(source='/embed/images/stars.png')" height="50" width="100%" verticalAlign="middle" horizontalAlign="center"/>
                 <s:Label text="Twoje zgłoszenia" width="100%" textAlign="center"/>
                 <s:Label fontWeight="bold" text="2" width="100%" textAlign="center"/>
                 <s:Label paddingTop="10" text="Potwierdzenia / odrzucenia / komentarze do Twoich zgłoszeń" width="100%" textAlign="center"/>

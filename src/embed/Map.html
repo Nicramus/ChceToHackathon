@@ -7,7 +7,9 @@
     <script type="text/javascript"
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATR02bEzCPwOURSU8U-9BObPV3Y069Grc">
     </script>
+
     <script type="text/javascript">
+
         function initialize() {
             var mapOptions = {
                 center: { lat: 52.4005285, lng: 16.9016658},
@@ -15,15 +17,22 @@
             };
             var map = new google.maps.Map(document.getElementById('map-canvas'),
                     mapOptions);
-            new google.maps.Marker({
+            var marker = new google.maps.Marker({
                 position: new google.maps.LatLng(52.4540926,16.9009936),
                 map: map,
                 title: 'Przydałaby się droga rowerowa'
             });
-            new google.maps.Marker({
+            google.maps.event.addListener(marker, 'click', function() {
+                document.location = '$marker';
+            });
+
+            marker = new google.maps.Marker({
                 position: new google.maps.LatLng(52.3872744,16.9510137),
                 map: map,
                 title: 'Przydałaby się droga rowerowa'
+            });
+            google.maps.event.addListener(marker, 'click', function() {
+                document.location = '$marker';
             });
 
         }

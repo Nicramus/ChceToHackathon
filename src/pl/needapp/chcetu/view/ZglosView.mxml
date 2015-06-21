@@ -60,7 +60,8 @@
                 var b : ZglosKafel = new ZglosKafel();
                 b.percentWidth = 33;
                 b.percentHeight = 95;
-                b.label = o.l + ' (' + o.c + ')';
+
+                b.label = o.l;
                 b.count = o.c;
                 b.source = 'embed/images/' + o.s;
                 b.description = o.d;
