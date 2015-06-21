@@ -12,15 +12,19 @@
 
     <s:TextInput id="titleInput" prompt="Podaj tytuł" width="100%"/>
 
-    <s:TextArea id="description" prompt="Podaj opis" width="100%" heightInLines="3"/>
+    <s:TextArea id="descriptionInput" prompt="Podaj opis" width="100%" height="100"/>
 
-    <s:SpriteVisualElement id="sprite1" width="200" height="150"/>
+    <!--<s:SpriteVisualElement id="sprite1" width="200" height="150"/>-->
+    <s:Image id="image1" width="100%" height="100"/>
 
     <s:Spacer height="100%" />
 
     <s:Button id="saveBtn" click="save(event)" width="100%" label="ZAPISZ"/>
 
     <fx:Script><![CDATA[
+        import com.adobe.image.JPGEncoder;
+
+        import pl.needapp.chcetu.data.DB;
 
 
         /* OBSŁUGA KAMERKI */
@@ -75,10 +79,16 @@
         }
 
         private function showMedia(loader:Loader):void {
-            var scale:Number = this.width / loader.width;
-            loader.width *=scale;
-            loader.height *=scale;
-            sprite1.addChild(loader);
+            //skalujemy do 800x600
+            var scale:Number = 800 / loader.width;
+            var matrix:Matrix = new Matrix();
+            matrix.scale(scale, scale);
+
+            var bd:BitmapData = new BitmapData(loader.width*scale, loader.height*scale);
+            bd.draw(loader, matrix);
+
+            image1.source = bd;
+            image1.height = bd.height * (image1.width / bd.width);
         }
 
         private function cameraError(error:ErrorEvent):void {
@@ -86,23 +96,48 @@
             NativeApplication.nativeApplication.exit();
         }
 
+        public static function encode(image:BitmapData):ByteArray {
+            PNGEncoder2.level = CompressionLevel.NORMAL;
+            return PNGEncoder2.encode(image);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+//            var enc:JPGEncoder = new JPGEncoder(85);
+//            var jpg:ByteArray = enc.encode(image);
+//            return jpg;
+        }
 
         private function save(event:MouseEvent):void {
+            var byteArray:ByteArray;
+            var t1:int = getTimer();
+            trace("zaczynam enkodować");
+            if(image1.source is BitmapData) {
+                byteArray = encode(image1.source as BitmapData);
+            }
+            var t2:int = getTimer();
+            trace("czas enkodowania to:", t2 - t1);
+
+            var fileNaME:String = "NeedApp/photo1020.jpg";
+            if(byteArray) {
+                var f:File = File.userDirectory.resolvePath(fileNaME);
+                var fs:FileStream = new FileStream();
+                fs.open(f,FileMode.WRITE);
+                fs.writeBytes(byteArray);
+                fs.close();
+            }
+
+            var newObj:Object = {
+                label:titleInput.text,
+                date:"2015-01-01 23:11", yes:"23", no:"33",
+                description: descriptionInput.text, image:fileNaME,
+                category:"droga_rowerowa", user:"Adam", comments:[{text:"Też tak uważam", user:"Magda"}]
+            };
+
+            DB.instance.dbWpisy.addItem(newObj);
+
+            navigator.pushView(WpisyView);
 
         }
+
+
+
         ]]></fx:Script>
 </s:View>

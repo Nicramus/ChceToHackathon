@@ -16,6 +16,7 @@
         import pl.needapp.chcetu.view.MapaView;
         import pl.needapp.chcetu.view.PomocView;
         import pl.needapp.chcetu.view.UstawieniaView;
+        import pl.needapp.chcetu.view.WpisyView;
         import pl.needapp.chcetu.view.ZglosView;
 
         import skins.IconHelper;
@@ -23,6 +24,7 @@
         private function _cc():void {
             var m : Array = [
                 {label : "Startuj", icon : IconHelper.renderDefault(Icon_home), view : HomeView },
+                {label : "Wpisy", icon : IconHelper.renderDefault(Icon_notes_list), view : WpisyView },
                 {label : "Mapa", icon : IconHelper.renderDefault(Icon_notes_list), view : MapaView},
                 {label : "Zgłoś", icon : IconHelper.renderDefault(Icon_notes_list), view : ZglosView},
                 {label : "Moje konto", icon : IconHelper.renderDefault(Icon_person_single), view : KontoView},
