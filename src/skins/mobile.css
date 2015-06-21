@@ -35,6 +35,22 @@ Button {
     color: #001f60;
 }
 
+TextArea {
+     contentBackgroundColor: #ffffff;
+     contentBackgroundAlpha: 0.2;
+     borderVisible: false;
+     borderColor: #f2fafd;
+     skinClass: ClassReference("skins.spark.mobile.TextAreaSkin");
+ }
+
+TextInput {
+    contentBackgroundColor: #ffffff;
+    contentBackgroundAlpha: 0.2;
+    borderVisible: false;
+    borderColor: #f2fafd;
+    skinClass: ClassReference("skins.spark.mobile.TextInputSkin");
+}
+
 .buttonOrange {
     color: #ffffff;
     skinClass: ClassReference("skins.spark.mobile.ButtonOrangeSkin");
@@ -42,4 +58,9 @@ Button {
 
 View {
     backgroundAlpha: 0;
+}
+
+.h1 {
+    fontSize: 28;
+    color: white;
 }
