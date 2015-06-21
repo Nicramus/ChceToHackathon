@@ -4,15 +4,15 @@
         <s:VerticalLayout paddingLeft="30" paddingRight="30" paddingBottom="30" paddingTop="30" gap="5"/>
     </s:layout>
 
-    <!--<s:VGroup id="myGroup" width="100%" gap="20">-->
-        <!--<s:HGroup width="100%">
-            <s:Label text="" styleName="h1"/>
-        </s:HGroup>-->
 
     <s:VGroup id="myGroup" width="100%">
-        <s:Label text="{data.label}" />
+        <s:Label text="{data.label}" styleName="h1" />
 
-        <s:List id="listaWpisow" width="100%" click="otworzWpis()" labelFunction="labelFun" contentBackgroundColor="#02baff"/>
+        <s:List id="listaWpisow" width="100%" click="otworzWpis()" labelFunction="labelFun" itemRenderer="pl.needapp.chcetu.view.ui.WpisListItem">
+            <s:layout>
+                <s:VerticalLayout gap="10" horizontalAlign="contentJustify"/>
+            </s:layout>
+                </s:List>
 
     </s:VGroup>
 
