@@ -25,15 +25,17 @@
 
     <s:Spacer height="100%" id="spacer1"/>
     <s:HGroup width="100%" verticalAlign="middle">
-        <s:Label id="komentarzeBtn" width="100%" text="Komentarze (3)" textAlign="center"  textDecoration="underline" fontSize="{Config.fontSize}"/>
-        <s:Label id="chceTuBtn" width="100%" text="Nie akceptuję (1)" textAlign="center" textDecoration="underline" fontSize="{Config.fontSize}"/>
-        <s:Button id="nieChceTuBtn" width="100%" label="Akceptuję (2)" styleName="buttonOrange" fontSize="{Config.fontSize}"/>
+        <s:Label id="komentarzeBtn" width="100%" text="Komentarze (3)" textAlign="center"  textDecoration="underline" fontSize="{Config.fontSize}" click="dispatchAction()"/>
+        <s:Label id="chceTuBtn" width="100%" text="Nie akceptuję (1)" textAlign="center" textDecoration="underline" fontSize="{Config.fontSize}" click="dispatchAction()"/>
+        <s:Button id="nieChceTuBtn" width="100%" label="Akceptuję (2)" styleName="buttonOrange" fontSize="{Config.fontSize}" click="dispatchAction()"/>
     </s:HGroup>
 
     <!--<s:Button id="chceTuBtn" width="100%" label="Chcę TU"/>-->
     <!--<s:Button id="nieChceTuBtn" width="100%" label="Nie Chcę TU"/>-->
 
     <fx:Script><![CDATA[
+        import mx.events.ChildExistenceChangedEvent;
+
         import pl.needapp.chcetu.Config;
         import pl.needapp.chcetu.data.DBWpis;
         import pl.needapp.chcetu.view.MapaView;
@@ -75,6 +77,10 @@
             }
 
             _data = value;
+        }
+
+        private function dispatchAction():void {
+            dispatchEvent(new Event(DbWpisPreview.USER_ACTION));
         }
         ]]></fx:Script>
 

@@ -31,9 +31,12 @@
             currentPreview.addEventListener(DbWpisPreview.USER_ACTION, currentPreviewActionHandler);
         }
 
-        private function currentPreviewActionHandler(event:DbWpisPreview):void {
-            if(cindex < DB.instance.dbWpisy.length) {
-
+        private function currentPreviewActionHandler(event:Event):void {
+            if(cindex < DB.instance.dbWpisy.length - 1) {
+                cindex ++;
+                currentPreview.data = DB.instance.dbWpisy[cindex] as DBWpis;
+            } else {
+                currentPreview.visible = currentPreview.includeInLayout = false;
             }
         }
 
