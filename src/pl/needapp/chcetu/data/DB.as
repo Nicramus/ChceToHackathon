@@ -18,7 +18,7 @@ public class DB {
 
         new DBWpis("Budżet Obywatelski: droga rowerowa", "2015-01-01 23:11", "23", "33", "Propozycja Stowarzyszenia Moja Sprawa - droga rowerowa na Ratajach", "NeedApp/photo1020.png", "rowery", "Jan", [new DBComment("Też tak uważam", "Magda")], "Warszawska 22"),
 
-        new DBWpis("Oznakowanie przejścia dla pieszych", "2015-01-01 23:11", "23", "33", "W parku Cytadela brakuje koszy na śmieci. ", "NeedApp/photo1020.png", "czystosc", "City", [new DBComment("Też tak uważam", "Magda")]),
+        new DBWpis("Oznakowanie przejścia dla pieszych", "2015-01-01 23:11", "23", "33", "W parku Cytadela brakuje koszy na śmieci. ", "NeedApp/photo1020.png", "czystosc", "City", [new DBComment("Też tak uważam", "Magda")], "Cytadela"),
 
     ]);
 
