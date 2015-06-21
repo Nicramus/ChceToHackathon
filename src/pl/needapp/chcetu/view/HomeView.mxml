@@ -1,15 +1,25 @@
 <?xml version="1.0"?>
-<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
-        xmlns:mx="library://ns.adobe.com/flex/mx" show="_show()">
+<s:View title="Startuj" xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
+        xmlns:mx="library://ns.adobe.com/flex/mx" show="_show()" creationComplete="_cc()">
     <s:layout>
-        <s:VerticalLayout gap="5" horizontalAlign="center" paddingBottom="50"/>
+        <s:VerticalLayout gap="5" horizontalAlign="center" paddingBottom="450"/>
     </s:layout>
     <s:VGroup height="100%" width="100%" id="list"/>
-    <s:Button label="ChceTu coś zrobić" click="navigator.pushView(ZglosView)" width="60%"/>
+
+    <s:Button id="b1" label="ChceTu coś" styleName="buttonOrange" click="navigator.pushView(ZglosView)" width="60%" />
+    <s:Button id="b2" label="ChceTu coś" click="navigator.pushView(ZglosView)" width="60%" />
 
     <fx:Script><![CDATA[
+        import skins.IconHelper;
+        import skins.SkinConfig;
+
         private function _show():void {
 
+        }
+
+        private function _cc():void {
+           b1.setStyle("icon", IconHelper.render(Icon_pin, SkinConfig.BIG_ICON_SIZE, SkinConfig.BIG_ICON_SIZE, 0xffffff));
+           b2.setStyle("icon", IconHelper.render(Icon_pin, SkinConfig.BIG_ICON_SIZE, SkinConfig.BIG_ICON_SIZE, 0x001f60));
         }
 
         ]]></fx:Script>
