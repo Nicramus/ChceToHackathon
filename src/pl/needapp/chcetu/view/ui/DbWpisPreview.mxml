@@ -42,6 +42,7 @@
 
 
         public var smallImage:Boolean = false;
+        public static const USER_ACTION:String = "user_action_event";
 
         [Bindable]
         public function get data():DBWpis {
