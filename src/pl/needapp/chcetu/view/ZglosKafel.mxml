@@ -1,14 +1,23 @@
 <?xml version="1.0"?>
-<s:VGroup xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" useHandCursor="true" buttonMode="true" click="{navigator.pushView(ZglaszamView)}">
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" useHandCursor="true" buttonMode="true" click="{navigator.pushView(ZglaszamView)}" creationComplete="_cc()">
     <!-- To change this template use File | Settings | File Templates. -->
     <!--<s:HGroup>
         <s:Spacer width="100%"/>
         <s:Label text="{count}"/>
     </s:HGroup>-->
-    <s:Image smooth="true" source="{source}" useHandCursor="true" buttonMode="true" width="100%" height="100%"/>
-    <s:Label fontSize="10" text="{label}"/>
+    <s:Image source="{Kafel_skin}" width="100%" height="100%" />
+    <s:VGroup width="100%" height="100%" paddingLeft="15" paddingRight="15" paddingTop="15" paddingBottom="15" gap="20">
+        <s:Image id="img" smooth="true" source="{source}" useHandCursor="true" buttonMode="true" width="100%" height="100%">
+            <!--<s:filters>
+                <s:DropShadowFilter distance="2" blurX="0" blurY="0" />
+            </s:filters>-->
+        </s:Image>
+        <s:Label fontSize="20" text="{label}" width="100%" textAlign="center" color="white" />
+    </s:VGroup>
 
     <fx:Script><![CDATA[
+        import caurina.transitions.Tweener;
+
         import spark.components.ViewNavigator;
 
         [Bindable]
@@ -22,5 +31,9 @@
         [Bindable]
         public var navigator:ViewNavigator;
 
+        private function _cc():void {
+            Tweener.addTween(img, {_color: 0xf2fafd, time: 0});
+        }
+
         ]]></fx:Script>
-</s:VGroup>
+</s:Group>
