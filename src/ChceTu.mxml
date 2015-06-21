@@ -35,6 +35,8 @@
         import mx.core.FlexGlobals;
         import mx.core.UIComponent;
 
+        import pl.needapp.chcetu.view.ZglaszamView;
+
         import pl.needapp.chcetu.view.HomeView;
 
         import skins.IconHelper;
@@ -88,6 +90,18 @@
             else {
                 view.loadString(s);
             }
+            view.addEventListener( LocationChangeEvent.LOCATION_CHANGING,
+                    handleLocationChanging );
+
+        }
+
+        private static function handleLocationChanging(event:LocationChangeEvent):void {
+            event.preventDefault();
+
+            //location parameter will have a absolute path of the .html file as a prefix
+            var strParameters:Array = (event.location as String).split("$");
+            NAVIGATOR.pushView(ZglaszamView, {label: "Przydałaby się ścieżka rowerowa"});
+            trace(strParameters[1] + "Is the string received from Javascript");
         }
 
         public static function hideHTML():void {

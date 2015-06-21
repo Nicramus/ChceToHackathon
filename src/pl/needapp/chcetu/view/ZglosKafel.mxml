@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
-<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" useHandCursor="true" buttonMode="true" click="{navigator.pushView(ZglaszamView)}" creationComplete="_cc()">
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" useHandCursor="true" buttonMode="true" click="{navigator.pushView(ZglaszamView, {label:description})}" creationComplete="_cc()">
     <!-- To change this template use File | Settings | File Templates. -->
-    <!--<s:HGroup>
-        <s:Spacer width="100%"/>
-        <s:Label text="{count}"/>
+    <!--<s:HGroup width="100%">
+        <s:Spacer width="90%"/>
+        <s:Label text="({count})" fontSize="10"/>
     </s:HGroup>-->
     <s:Image source="{Kafel_skin}" width="100%" height="100%" />
     <s:VGroup width="100%" height="100%" paddingLeft="15" paddingRight="15" paddingTop="15" paddingBottom="15" gap="20">
@@ -12,7 +12,7 @@
                 <s:DropShadowFilter distance="2" blurX="0" blurY="0" />
             </s:filters>-->
         </s:Image>
-        <s:Label fontSize="20" text="{label}" width="100%" textAlign="center" color="white" />
+        <s:Label fontSize="20" text="{label} ({count})" width="100%" textAlign="center" color="white" />
     </s:VGroup>
 
     <fx:Script><![CDATA[
