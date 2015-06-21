@@ -1,24 +1,26 @@
 <?xml version="1.0"?>
-<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" show="_show()">
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" show="_show()" color="white" title="{data.label}">
     <s:layout>
-        <s:VerticalLayout gap="15" paddingLeft="15" paddingRight="15" paddingTop="20" paddingBottom="20"/>
+        <s:VerticalLayout paddingLeft="30" paddingRight="30" paddingBottom="30" paddingTop="30" gap="5"/>
     </s:layout>
 
+    <s:VGroup id="myGroup" width="100%" gap="20">
+        <!--<s:HGroup width="100%">
+            <s:Label text="" styleName="h1"/>
+        </s:HGroup>-->
 
     <s:VGroup id="myGroup" width="100%">
-        <s:Label text="{data.label}" fontWeight="bold" />
+        <s:Label text="{data.label}" />
 
-        <s:List id="listaWpisow" width="100%" click="otworzWpis()" labelFunction="labelFun" alternatingItemColors="[#02baff]"/>
+        <s:List id="listaWpisow" width="100%" click="otworzWpis()" labelFunction="labelFun" contentBackgroundColor="#02baff"/>
 
-        <s:Line height="1" width="100%" />
     </s:VGroup>
-
 
     <s:Label id="noDataLabel" text="Aktualnie brak wpisów w okolicy."  visible="false" includeInLayout="false" />
 
     <s:Spacer height="100%" />
 
-    <s:Button width="100%" styleName="buttonOrange" label="Dodaj nowy wpis"/>
+    <s:Button id="addButton" width="100%" label="Zgłoś coś nowego" styleName="buttonOrange" click="navigator.pushView(ZglosView)"/>
 
 
     <fx:Script><![CDATA[
@@ -27,7 +29,13 @@
         import pl.needapp.chcetu.data.DB;
         import pl.needapp.chcetu.data.DBWpis;
 
+        import skins.IconHelper;
+        import skins.SkinConfig;
+
         private function _show():void {
+
+           // listaMenu.dataProvider = new ArrayCollection(["Wszystkie wpisy", "Wpisy z mej dzielnicy", "Popularne wpisy"]);
+           // listaMenu.selectedIndex = 0;
 
             //MOJE WPISY
             var a:ArrayCollection = new ArrayCollection();
@@ -37,7 +45,7 @@
                 }
             }
             listaWpisow.dataProvider = a;
-            myGroup.visible  = myGroup.includeInLayout = (a.length > 0);
+            myGroup.visible = myGroup.includeInLayout = (a.length > 0);
 
             //WPISY MIASTA
             var b:ArrayCollection = new ArrayCollection();
@@ -48,26 +56,31 @@
             }
 
             //BRAK WPISÓW
-            if(a.length < 1 && b.length < 1) {
-                noDataLabel.visible  = noDataLabel.includeInLayout = true;
+            if (a.length < 1 && b.length < 1) {
+                noDataLabel.visible = noDataLabel.includeInLayout = true;
             }
 
-
+            addButton.setStyle("icon", IconHelper.render(Icon_pin, SkinConfig.BIG_ICON_SIZE, SkinConfig.BIG_ICON_SIZE, 0xffffff));
         }
 
-
+        private function dodajNowyWpis() :void {
+            navigator.pushView(ZglaszamView, {label: "Chciałbym tutaj..."});
+        }
 
         private function otworzWpis():void {
             navigator.pushView(PreView, listaWpisow.selectedItem);
         }
 
         private function labelFun(data:Object):String {
-             return data.label + ' (' + data.address + ')';
+            return data.label + ' (' + data.address + ')';
         }
 
         private function listClick(event:Event):void {
             navigator.pushView(ZglaszamView, event.currentTarget.selectedItem);
         }
 
+        private function _cc():void {
+
+        }
         ]]></fx:Script>
 </s:View>

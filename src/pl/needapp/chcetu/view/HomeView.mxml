@@ -9,7 +9,7 @@
 
     <s:Spacer height="100%" />
 
-    <s:Button id="b1" label="CHCETu zgłosić" styleName="buttonOrange" click="navigator.pushView(ZglosView)" width="60%" />
+    <s:Button id="b1" label="CHCEtu zgłosić" styleName="buttonOrange" click="navigator.pushView(ZglosView)" width="60%" />
 
     <s:Spacer height="40" />
 

@@ -29,6 +29,9 @@
         <s:Button id="nieChceTuBtn" width="100%" label="Akceptuję (2)" styleName="buttonOrange" fontSize="{Config.fontSize}"/>
     </s:HGroup>
 
+    <!--<s:Button id="chceTuBtn" width="100%" label="Chcę TU"/>-->
+    <!--<s:Button id="nieChceTuBtn" width="100%" label="Nie Chcę TU"/>-->
+
     <fx:Script><![CDATA[
         import pl.needapp.chcetu.Config;
         import pl.needapp.chcetu.data.DBWpis;

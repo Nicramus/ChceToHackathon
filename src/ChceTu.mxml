@@ -12,6 +12,8 @@
 
     <s:navigationContent>
         <mx:Spacer width="10"/>
+        <s:Image source="{undoIcon}" alpha="0.9" click="{navigator.popView()}" visible="{navigator.activeView.title != 'Start'}"/>
+        <mx:Spacer width="10"/>
         <s:Image source="{menuIcon}" click="{setCurrentState(currentState == 'normal' ? 'menu' : 'normal')}" alpha="0.9"/>
         <mx:Spacer width="20"/>
         <s:Image width="198" height="60" source="{IconHelper.render(Skin_logo, 198, 60)}"/>
@@ -21,8 +23,12 @@
     </s:navigationContent>
 
     <s:actionContent>
-        <s:Image source="{undoIcon}" alpha="0.9" click="{navigator.popView()}" visible="{navigator.activeView.title != 'Start'}"/>
-        <mx:Spacer width="10" />
+        <s:Image source="{pyra1}" alpha="0.9"/>
+        <mx:Spacer width="5" />
+        <s:Image source="{pyra2}" alpha="0.9"/>
+        <mx:Spacer width="5" />
+        <s:Image source="{pyra3}" alpha="0.9"/>
+        <mx:Spacer width="20" />
         <s:Image source="{searchIcon}" alpha="0.9"/>
     </s:actionContent>
 
@@ -57,6 +63,16 @@
         [Bindable]
         private var undoIcon : *;
 
+        [Bindable]
+        private var pyra1 : *;
+
+        [Bindable]
+        private var pyra2 : *;
+
+        [Bindable]
+        private var pyra3 : *;
+
+
         private function _cc():void {
             ColorShortcuts.init();
             DisplayShortcuts.init();
@@ -67,6 +83,10 @@
             undoIcon = IconHelper.render(Icon_undo, SkinConfig.ICON_SIZE, SkinConfig.ICON_SIZE, 0xffffff);
             menuIcon = IconHelper.render(Icon_menu, SkinConfig.ICON_SIZE, SkinConfig.ICON_SIZE, 0xffffff);
             searchIcon = IconHelper.render(Icon_search, SkinConfig.ICON_SIZE, SkinConfig.ICON_SIZE, 0xffffff);
+
+            pyra1 = IconHelper.render(Icon_potato, SkinConfig.ICON_SIZE, SkinConfig.ICON_SIZE, 0xffffff);
+            pyra2 = IconHelper.render(Icon_potato, SkinConfig.ICON_SIZE, SkinConfig.ICON_SIZE, 0xffffff);
+            pyra3 = IconHelper.render(Icon_potato, SkinConfig.ICON_SIZE, SkinConfig.ICON_SIZE, 0xffffff);
         }
 
         private function _added():void {

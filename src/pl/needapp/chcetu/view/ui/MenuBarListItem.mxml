@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" click="_onClick()" autoDrawBackground="false" color="white">
+    <!-- To change this template use File | Settings | File Templates. -->
+    <s:states>
+        <s:State name="normal" />
+        <s:State name="selected" />
+    </s:states>
+
+    <s:Rect width="100%" height="100%" alpha="0.1" includeIn="selected">
+        <s:fill>
+            <s:SolidColor color="#234793"/>
+        </s:fill>
+    </s:Rect>
+    <s:Label width="100%" textAlign="center" text="{data.label}" fontSize="24" />
+
+    <fx:Script><![CDATA[
+        import skins.SkinConfig;
+
+        private function _onClick():void {
+            dispatchEvent(new Event("listClick"));
+        }
+        ]]></fx:Script>
+</s:ItemRenderer>
