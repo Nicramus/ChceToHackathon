@@ -2,7 +2,10 @@
  * Created by Bartek on 2015-06-21.
  */
 package pl.needapp.chcetu.data {
-public class DBWpis {
+import flash.events.EventDispatcher;
+
+[Bindable]
+public class DBWpis extends EventDispatcher {
 
     public var label:String;
     public var date:String;
