@@ -22,8 +22,10 @@
     <s:Button id="saveBtn" click="save(event)" width="100%" label="ZAPISZ"/>
 
     <fx:Script><![CDATA[
+        import mx.formatters.DateFormatter;
 
         import pl.needapp.chcetu.data.DB;
+        import pl.needapp.chcetu.data.DBWpis;
 
 
         /* OBSŁUGA KAMERKI */
@@ -123,15 +125,12 @@
                 fs.close();
             }
 
-            var newObj:Object = {
+            var dateFormat:DateFormatter = new DateFormatter("DD-MM-YYY hh:mm");
 
-                label:titleInput.text,
-                date:"2015-01-01 23:11", yes:"23", no:"33",
-                description: descriptionInput.text, image:fileNaME,
-                category:"droga_rowerowa", user:"Adam", comments:[{text:"Też tak uważam", user:"Magda"}]
-            };
+            var nowyWpis:DBWpis = new DBWpis(titleInput.text, dateFormat.format(new Date()), "1", "0", descriptionInput.text,
+                    fileNaME, "droga_rowerowa", "Adam", [])
 
-            DB.instance.dbWpisy.addItem(newObj);
+            DB.instance.dbWpisy.addItem(nowyWpis);
 
             navigator.pushView(WpisyView);
 
