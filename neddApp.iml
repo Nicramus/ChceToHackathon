@@ -11,6 +11,9 @@
             <entry library-id="5fa3e9b3-ce36-4490-a33f-5a76c1e2e816">
               <dependency linkage="Merged" />
             </entry>
+            <entry library-id="b0c6edd3-bde6-43be-b043-80ef38b208af">
+              <dependency linkage="Merged" />
+            </entry>
           </entries>
           <sdk name="4.14.1" />
         </dependencies>
@@ -45,6 +48,16 @@
         <properties id="5fa3e9b3-ce36-4490-a33f-5a76c1e2e816" />
         <CLASSES>
           <root url="jar://$MODULE_DIR$/lib/PNGEncoder2.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="b0c6edd3-bde6-43be-b043-80ef38b208af" />
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/src/skins/skin.swc!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
