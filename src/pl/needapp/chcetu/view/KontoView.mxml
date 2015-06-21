@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" creationComplete="_cc()">
 
-    <s:Scroller width="100%" height="100%" id="list" fontSize="12">
+    <s:Scroller width="100%" height="100%" id="list" fontSize="20">
         <s:VGroup verticalCenter="">
                 <s:Label text="Twoja reputacja na dzielnicy" width="100%" textAlign="center"/>
                 <s:Image smooth="true" source="@Embed(source='/embed/images/stars.png')" height="50" width="100%" verticalAlign="middle" horizontalAlign="center"/>
