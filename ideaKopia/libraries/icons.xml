@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="icons">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/src/skins/icons.swc!/" />
+      <root url="jar://$PROJECT_DIR$/lib/PNGEncoder2.swc!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
