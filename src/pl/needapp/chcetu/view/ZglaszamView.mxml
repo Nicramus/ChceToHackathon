@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
-<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" >
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
+        xmlns:mx="library://ns.adobe.com/flex/mx" creationComplete="_cc()" title="Zgłaszam coś" color="white">
     <s:layout>
         <s:VerticalLayout padding="25" gap="15"/>
     </s:layout>
@@ -8,18 +9,42 @@
     <s:HGroup width="100%">
         <s:Button styleName="buttonOrange" click="button1_clickHandler(event)" label="Foto" width="100%"/>
         <s:Button styleName="buttonOrange"  click="button1_clickHandler(event)" label="Z pliku" width="100%"/>
+    <s:HGroup width="100%" verticalAlign="middle">
+        <s:Label text="CHCE coś zgłosić tutaj: " styleName="h1" width="100%"/>
+        <s:Label text="A może gdzieś indziej?" textDecoration="underline" fontSize="18" />
     </s:HGroup>
 
-    <s:TextInput id="titleInput" prompt="Podaj tytuł" width="100%" text="{data.label}"/>
+    <s:Group width="100%" >
+        <s:Rect width="100%" height="100%" radiusX="3" radiusY="3" alpha="0.2">
+            <s:fill>
+                <s:SolidColor color="white" />
+            </s:fill>
+        </s:Rect>
+        <s:Label text="{data.address ? data.address : 'ul. Strzelecka 16'}" fontSize="24" top="15" bottom="15" width="100%" textAlign="center" fontStyle="italic"/>
+    </s:Group>
+    <mx:Spacer height="15"/>
+    <s:Label text="{data.label}" styleName="h1"/>
+    <s:TextArea id="titleInput" width="100%" height="50" prompt="podaj tytuł"/>
+    <mx:Spacer height="15"/>
+    <s:Label text="A może tak dokładniej:" styleName="h1"/>
+    <s:TextArea id="descriptionInput" prompt="podaj opis" width="100%" height="80" text="{data.description}" />
+    <mx:Spacer height="15"/>
+    <s:Label text="No i foto:" styleName="h1"/>
+    <s:HGroup width="100%" gap="10">
+        <s:Button click="button1_clickHandler(event)" label="Dodaj foto z aparatu" fontSize="24" width="100%"/>
+        <s:Button click="button1_clickHandler(event)" label="Dodaj foto z pliku" fontSize="24" width="100%"/>
+    </s:HGroup>
+    <s:Group width="100%" height="100%">
+        <s:Rect width="100%" height="100%" radiusX="3" radiusY="3" alpha="0.1">
+            <s:fill>
+                <s:SolidColor color="white" />
+            </s:fill>
+        </s:Rect>
+        <s:Image id="image1" left="10" right="10" top="10" bottom="10" />
+    </s:Group>
+    <s:Spacer height="30" />
 
-    <s:TextArea id="descriptionInput" prompt="Podaj opis" width="100%" height="100" text="{data.description}"/>
-
-    <!--<s:SpriteVisualElement id="sprite1" width="200" height="150"/>-->
-    <s:Image id="image1" width="100%" height="100"/>
-
-    <s:Spacer height="100%" />
-
-    <s:Button id="saveBtn" click="save(event)" width="100%" label="ZAPISZ"/>
+    <s:Button id="saveBtn" click="save(event)" width="100%" label="Zgłoś" styleName="buttonOrange" />
 
     <fx:Script><![CDATA[
         import mx.formatters.DateFormatter;
@@ -30,6 +55,7 @@
         import pl.needapp.chcetu.data.DBWpis;
 
         import skins.IconHelper;
+        import skins.SkinConfig;
 
 
         /* OBSŁUGA KAMERKI */
@@ -139,6 +165,10 @@
 
             navigator.pushView(WpisyView, {label : "Moje wpisy", icon : IconHelper.renderDefault(Icon_notes_list), view : WpisyView, type:"my" });
 
+        }
+
+        private function _cc():void {
+            saveBtn.setStyle("icon", IconHelper.render(Icon_pin, SkinConfig.BIG_ICON_SIZE, SkinConfig.BIG_ICON_SIZE, 0xffffff));
         }
 
 
