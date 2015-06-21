@@ -6,8 +6,8 @@
 
     <s:Label text="lokalizacja: {data.address ? data.address : 'ul. Strzelecka 16'}"/>
     <s:HGroup width="100%">
-        <s:Button click="button1_clickHandler(event)" label="Foto" width="100%"/>
-        <s:Button click="button1_clickHandler(event)" label="Z pliku" width="100%"/>
+        <s:Button styleName="buttonOrange" click="button1_clickHandler(event)" label="Foto" width="100%"/>
+        <s:Button styleName="buttonOrange"  click="button1_clickHandler(event)" label="Z pliku" width="100%"/>
     </s:HGroup>
 
     <s:TextInput id="titleInput" prompt="Podaj tytuł" width="100%" text="{data.label}"/>
