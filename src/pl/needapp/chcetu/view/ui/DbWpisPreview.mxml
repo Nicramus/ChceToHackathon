@@ -7,40 +7,35 @@
         xmlns:s="library://ns.adobe.com/flex/spark"
         width="100%"
         padding="20"
+        horizontalAlign="center"
+        gap="20"
         >
 
-    <s:Label text="Co?" width="100%" fontSize="22"/>
-    <s:HGroup width="100%" verticalAlign="middle" gap="20">
-        <s:Image id="image0" width="100" height="100"/>
-       <s:VGroup width="100%">
-           <s:Label id="titleInput" width="100%" text="{data.label}" fontSize="{Config.fontSize}" fontWeight="bold"/>
+    <s:Label id="titleInput" width="100%" text="{data.label}" fontSize="{Config.fontSize + 5}" fontWeight="bold"/>
 
-           <s:Label id="descriptionInput" width="100%" height="100" text="{data.description}" fontStyle="italic" fontSize="{Config.fontSize - 2}"/>
-       </s:VGroup>
+    <s:Label id="descriptionInput" width="100%" text="{data.description}"  fontSize="{Config.fontSize}"/>
 
+    <s:HGroup verticalAlign="middle" width="100%">
+        <s:Image source="embed/images/pinezka.png" width="40" height="40" click="navigator.pushView(MapaView)"/>
+        <s:Label text="Miejsce: {data.address}" fontSize="{Config.fontSize}"  width="100%" paddingTop="5"/>
+        <!--<s:Button label="mapa" click="navigator.pushView(MapaView)"/>-->
     </s:HGroup>
 
+    <s:Image id="image1" width="100%" />
+
+    <s:Spacer height="100%" id="spacer1"/>
     <s:HGroup width="100%" verticalAlign="middle">
-        <s:Label text="Gdzie?" width="100%" fontSize="22"/>
-        <s:Label textDecoration="underline" text="Zobacz na mapie" click="navigator.pushView(MapaView)" buttonMode="true" fontSize="22"/>
+        <s:Label id="komentarzeBtn" width="100%" text="Komentarze (3)" textAlign="center"  textDecoration="underline" fontSize="{Config.fontSize}" click="dispatchAction()"/>
+        <s:Label id="chceTuBtn" width="100%" text="Nie akceptuję (1)" textAlign="center" textDecoration="underline" fontSize="{Config.fontSize}" click="dispatchAction()"/>
+        <s:Button id="nieChceTuBtn" width="100%" label="Akceptuję (2)" styleName="buttonOrange" fontSize="{Config.fontSize}" click="dispatchAction()"/>
     </s:HGroup>
-    <s:Group width="100%" >
-        <s:Rect width="100%" height="100%" radiusX="3" radiusY="3" alpha="0.2">
-            <s:fill>
-                <s:SolidColor color="white" />
-            </s:fill>
-        </s:Rect>
-        <s:Label text="{data.address ? data.address : 'ul. Strzelecka 16'}" fontSize="24" top="15" bottom="15" width="100%" textAlign="center" fontStyle="italic"/>
-    </s:Group>
 
-    <s:Image id="image1" width="100%" height="100%"/>
-
-    <s:Spacer height="30" />
-
-    <s:Button id="chceTuBtn" width="100%" label="Ja też CHCĘ to" styleName="buttonOrange"/>
-    <s:Button id="nieChceTuBtn" width="100%" label="Niekoniecznie"/>
+    <!--<s:Button id="chceTuBtn" width="100%" label="Chcę TU"/>-->
+    <!--<s:Button id="nieChceTuBtn" width="100%" label="Nie Chcę TU"/>-->
 
     <fx:Script><![CDATA[
+        import mx.events.ChildExistenceChangedEvent;
+
         import pl.needapp.chcetu.Config;
         import pl.needapp.chcetu.data.DBWpis;
         import pl.needapp.chcetu.view.MapaView;
@@ -53,6 +48,10 @@
         [Bindable]
         public var navigator:ViewNavigator;
 
+
+        public var smallImage:Boolean = false;
+        public static const USER_ACTION:String = "user_action_event";
+
         [Bindable]
         public function get data():DBWpis {
             return _data;
@@ -60,17 +59,28 @@
 
         [Bindable]
         public function set data(value:DBWpis):void {
-            var imageFile:File = File.userDirectory.resolvePath(value.image);
+            trace(value.image);
+            image1.source = value.image;
+            /*var imageFile:File = new File();
+            imageFile = imageFile.resolvePath(value.image);
             if(imageFile.exists) {
                 image1.source = imageFile.nativePath;
-                image0.source = imageFile.nativePath;
                 image1.visible = image1.includeInLayout = true;
             } else {
                 image1.visible = image1.includeInLayout = false;
+            }*/
+
+            if(smallImage) {
+                image1.percentWidth = 70;
+                image1.percentHeight = 100;
+                spacer1.includeInLayout = false;
             }
 
-
             _data = value;
+        }
+
+        private function dispatchAction():void {
+            dispatchEvent(new Event(DbWpisPreview.USER_ACTION));
         }
         ]]></fx:Script>
 
