@@ -23,8 +23,10 @@
 
         private function _cc():void {
             var m : Array = [
-                {label : "Startuj", icon : IconHelper.renderDefault(Icon_home), view : HomeView },
-                {label : "Wpisy", icon : IconHelper.renderDefault(Icon_notes_list), view : WpisyView },
+                {label : "Start", icon : IconHelper.renderDefault(Icon_home), view : HomeView },
+                {label : "Moje wpisy", icon : IconHelper.renderDefault(Icon_notes_list), view : WpisyView },
+                {label : "Oceń wpisy", icon : IconHelper.renderDefault(Icon_notes_list), view : WpisyView },
+                {label : "Wszystkie wpisy", icon : IconHelper.renderDefault(Icon_notes_list), view : WpisyView },
                 {label : "Mapa", icon : IconHelper.renderDefault(Icon_notes_list), view : MapaView},
                 {label : "Zgłoś", icon : IconHelper.renderDefault(Icon_notes_list), view : ZglosView},
                 {label : "Moje konto", icon : IconHelper.renderDefault(Icon_person_single), view : KontoView},

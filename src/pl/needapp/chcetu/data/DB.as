@@ -12,9 +12,9 @@ public class DB {
     [Bindable]
     public var dbWpisy:ArrayCollection = new ArrayCollection([
 
-        {label:"Przydałaby się droga rowerowa", date:"2015-01-01 23:11", yes:"23", no:"33", description:"Ulica Obornicka jest niebezpieczna dla rowerzystów i przydałaby się tam droga rowerowa", image:"obornicka.png", category:"droga_rowerowa", user:"Adam", comments:[{text:"Też tak uważam", user:"Magda"}]},
+        new DBWpis("Przydałaby się droga rowerowa", "2015-01-01 23:11", "23", "33", "Ulica Obornicka jest niebezpieczna dla rowerzystów i przydałaby się tam droga rowerowa", "NeedApp/droga1.jpg", "droga_rowerowa", "Adam", [new DBComment("Też tak uważam", "Magda")]),
 
-        {label:"Przydałaby się droga rowerowa", date:"2015-01-01", yes:"23", no:"33", description:"Ulica Obornicka jest niebezpieczna dla rowerzystów i przydałaby się tam droga rowerowa", image:"obornicka.png", category:"droga_rowerowa", user:"Magda"}
+        new DBWpis("Brak koszy w parku", "2015-01-01 23:11", "23", "33", "W parku Cytadela brakuje koszy na śmieci. ", "NeedApp/photo1020.png", "czystosc", "Adam", [new DBComment("Też tak uważam", "Magda")]),
 
     ]);
 

@@ -30,21 +30,22 @@
         import spark.components.Button;
 
         public static var CATS : Array = [
-            {c:23, l: "Zróbmy coś razem", d:"CHCEtu potrzebuję tutaj...", s:"worker5.png"},
-            {c:23, l: "Wywóz śmieci GOAP", d:"Zgłoszenie GOAP", s:"recycle2.png"},
-            {c:23, l: "Straż miejska", d:"Zgłoszenie do Straży Miejskiej", s:"policeman1.png"},
-
+            {c:23, l: "Zróbmy to razem!", d:"CHCEtu potrzebuję tutaj...", s:"Partnership_512.png"},
+            {c:23, l: "Moja propozycja", d:"CHCEtu potrzebuję tutaj...", s:"worker5.png"},
             {c:10, l: "Droga rowerowa", d:"CHCEtu dróżkę rowerową", s:"cycling.png"},
-            {c:10, l: "Dziurawa droga", d:"CHCEtu załatajcie pliz dziury w drodze", s:"road41.png"},
-            {c:23, l: "Niebezpieczna droga", d:"Uwaga, niebezpieczeństwo - lepsze oznakowanie drogi, światła etc", s:"street7.png"},
 
-            {c:23, l: "Oświetlenie", d:"Ciemność widzę, widzę ciemność - nie świecą się lampy", s:"light106.png"},
+            {c:23, l: "Straż miejska", d:"Zgłoszenie do Straży Miejskiej", s:"policeman.png"},
+            {c:23, l: "Nielegalna reklama", d:"Włączcie adblocka na tą reklamę", s:"signal60.png"},
+            {c:23, l: "Bezpańskie zwierzęta", d:"KTO WYPUŚCIŁ PIESKI? KTO! KTO!", s:"print48.png"},
+
+            {c:23, l: "Wywóz śmieci GOAP", d:"Zgłoszenie GOAP", s:"recycle2.png"},
             {c:23, l: "Dzikie wysypisko", d:"Tu przydałoby się sprzątanie", s:"wiping16.png"},
             {c:23, l: "Uszkodzone coś...", d:"A tu coś popsute", s:"glasses23.png"},
 
-            {c:23, l: "Nielegalna reklama", d:"Włączcie adblocka na tą reklamę", s:"signal60.png"},
-            {c:23, l: "Uciążliwy hałas", d:"Niedyskretny meloman", s:"loudspeaker17.png"},
-            {c:23, l: "Bezpańskie zwierzęta", d:"KTO WYPUŚCIŁ PIESKI? KTO! KTO!", s:"print48.png"}
+            {c:23, l: "Niebezpieczna droga", d:"Uwaga, niebezpieczeństwo - lepsze oznakowanie drogi, światła etc", s:"street7.png"},
+            {c:23, l: "Oświetlenie", d:"Ciemność widzę, widzę ciemność - nie świecą się lampy", s:"light106.png"},
+            {c:23, l: "Uciążliwy hałas", d:"Niedyskretny meloman", s:"loudspeaker17.png"}
+
         ];
 
         private function _cc():void {
@@ -59,7 +60,8 @@
                 var b : ZglosKafel = new ZglosKafel();
                 b.percentWidth = 33;
                 b.percentHeight = 95;
-                b.label = o.l + ' (' + o.c + ')';
+
+                b.label = o.l;
                 b.count = o.c;
                 b.source = 'embed/images/' + o.s;
                 b.description = o.d;
