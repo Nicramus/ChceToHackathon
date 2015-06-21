@@ -9,6 +9,10 @@
 
         }
 
+        private function showZglos():void {
+            navigator.pushView(ZglaszamView);
+        }
+
         private function _show():void {
 
             ChceTu.showHTML(null, new CONFIG_HTML);
@@ -17,5 +21,7 @@
         private function _hide():void {
             ChceTu.hideHTML();
         }
+
+
         ]]></fx:Script>
 </s:View>

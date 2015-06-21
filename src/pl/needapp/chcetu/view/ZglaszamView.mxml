@@ -10,9 +10,9 @@
         <s:Button click="button1_clickHandler(event)" label="Z pliku" width="100%"/>
     </s:HGroup>
 
-    <s:TextInput id="titleInput" prompt="Podaj tytuł" width="100%" text="{data.description}"/>
+    <s:TextInput id="titleInput" prompt="Podaj tytuł" width="100%" text="{data.label}"/>
 
-    <s:TextArea id="descriptionInput" prompt="Podaj opis" width="100%" height="100"/>
+    <s:TextArea id="descriptionInput" prompt="Podaj opis" width="100%" height="100" text="{data.description}"/>
 
     <!--<s:SpriteVisualElement id="sprite1" width="200" height="150"/>-->
     <s:Image id="image1" width="100%" height="100"/>
