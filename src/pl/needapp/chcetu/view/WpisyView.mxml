@@ -9,17 +9,10 @@
             <s:Label text="" styleName="h1"/>
         </s:HGroup>-->
 
-       <!-- <s:List id="listaMenu" itemRenderer="pl.needapp.chcetu.view.ui.MenuBarListItem" width="100%" contentBackgroundAlpha="0">
-            <s:layout>
-                <s:HorizontalLayout gap="10" />
-            </s:layout>
-        </s:List>-->
+    <s:VGroup id="myGroup" width="100%">
+        <s:Label text="{data.label}" />
 
-        <s:List id="listaWpisow" itemRenderer="pl.needapp.chcetu.view.ui.WpisListItem" width="100%" click="otworzWpis()" labelFunction="labelFun" contentBackgroundAlpha="0">
-            <s:layout>
-                <s:VerticalLayout horizontalAlign="contentJustify" gap="10" />
-            </s:layout>
-                </s:List>
+        <s:List id="listaWpisow" width="100%" click="otworzWpis()" labelFunction="labelFun" contentBackgroundColor="#02baff"/>
 
     </s:VGroup>
 
@@ -52,7 +45,7 @@
                 }
             }
             listaWpisow.dataProvider = a;
-            myGroup.visible  = myGroup.includeInLayout = (a.length > 0);
+            myGroup.visible = myGroup.includeInLayout = (a.length > 0);
 
             //WPISY MIASTA
             var b:ArrayCollection = new ArrayCollection();
@@ -63,21 +56,23 @@
             }
 
             //BRAK WPISÓW
-            if(a.length < 1 && b.length < 1) {
-                noDataLabel.visible  = noDataLabel.includeInLayout = true;
+            if (a.length < 1 && b.length < 1) {
+                noDataLabel.visible = noDataLabel.includeInLayout = true;
             }
 
             addButton.setStyle("icon", IconHelper.render(Icon_pin, SkinConfig.BIG_ICON_SIZE, SkinConfig.BIG_ICON_SIZE, 0xffffff));
         }
 
-
+        private function dodajNowyWpis() :void {
+            navigator.pushView(ZglaszamView, {label: "Chciałbym tutaj..."});
+        }
 
         private function otworzWpis():void {
             navigator.pushView(PreView, listaWpisow.selectedItem);
         }
 
         private function labelFun(data:Object):String {
-             return data.label + ' (' + data.address + ')';
+            return data.label + ' (' + data.address + ')';
         }
 
         private function listClick(event:Event):void {
@@ -87,6 +82,5 @@
         private function _cc():void {
 
         }
-
         ]]></fx:Script>
 </s:View>
